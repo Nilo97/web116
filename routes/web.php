@@ -9,3 +9,5 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login'); // se estiver em resources/views/login.blade.php
 });
+
+
