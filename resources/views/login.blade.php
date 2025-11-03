@@ -133,8 +133,11 @@
           $('#loginButton').prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processando...');
           $('#loginMessage').hide();
           
+          // Usar a variável de ambiente diretamente no JavaScript
+          var apiLoginUrl = '{{ env("API_LOGIN_URL") }}';
+          
           $.ajax({
-            url: 'http://127.0.0.1:9800/api/login',
+            url: apiLoginUrl,
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
@@ -143,15 +146,17 @@
             }),
             success: function(response) {
               // Armazena o token JWT no localStorage
-              localStorage.setItem('auth_token', response.token);
+              console.log(response);
+              console.log(response.data.access_token);
+              localStorage.setItem('auth_token', response.data.access_token);
               
               // Se a API retornar dados do usuário, armazene-os também
               if (response.user) {
-                localStorage.setItem('user_data', JSON.stringify(response.user));
+                localStorage.setItem('user_data', JSON.stringify(response.data.user));
               }
               
               // Redireciona para a página de casos
-              window.location.href = '/casos';
+              // window.location.href = '/casos';
             },
             error: function(xhr) {
               $('#loginButton').prop('disabled', false).html('Entrar');
