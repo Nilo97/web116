@@ -7,21 +7,22 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return view('login'); // se estiver em resources/views/login.blade.php
+    return view('login');
 });
 
-Route::get('/casos', function () {
-    return view('casos'); // 
-});
+// Rotas protegidas que requerem autenticação
+Route::middleware(['api.token'])->group(function () {
+    Route::get('/casos', function () {
+        return view('casos');
+    });
 
+    Route::get('/file-manager', function () {
+        return view('file-manager');
+    });
 
-Route::get('/file-manager', function () {
-    return view('file-manager'); // s
-});
-
-
-Route::get('/formDenuncia', function () {
-    return view('formDenuncia'); // s
+    Route::get('/formDenuncia', function () {
+        return view('formDenuncia');
+    });
 });
 
 

@@ -50,15 +50,17 @@
           <div class="col-xl-7"><img class="bg-img-cover bg-center" src="../assets/images/login/2.jpg" alt="looginpage"></div>
           <div class="col-xl-5 p-0">
             <div class="login-card">
-     <form class="theme-form login-form">
+     <form id="loginForm" class="theme-form login-form">
   <h4>Entrar</h4>
   <h6>Bem-vindo de volta! Acesse a sua conta.</h6>
+  
+  <div id="loginMessage" class="alert alert-danger" style="display: none;"></div>
 
   <div class="form-group">
-    <label>Endereço de Email</label>
+    <label>Email</label>
     <div class="input-group">
       <span class="input-group-text"><i class="icon-email"></i></span>
-      <input class="form-control" type="email" required placeholder="exemplo@gmail.com">
+      <input class="form-control" type="email" id="username" required placeholder="exemplo@gmail.com">
     </div>
   </div>
 
@@ -66,7 +68,7 @@
     <label>Palavra-passe</label>
     <div class="input-group">
       <span class="input-group-text"><i class="icon-lock"></i></span>
-      <input class="form-control" type="password" name="login[password]" required placeholder="*********">
+      <input class="form-control" type="password" id="password" required placeholder="*********">
       <div class="show-hide"><span class="show"></span></div>
     </div>
   </div>
@@ -80,10 +82,7 @@
   </div>
 
   <div class="form-group">
-    <!-- <button class="btn btn-primary btn-block" type="submit">Entrar</button> -->
-<a class="btn btn-primary btn-block" href="casos.html"  type="submit">Entrar</a>
-
-
+    <button id="loginButton" class="btn btn-primary btn-block" type="submit">Entrar</button>
   </div>
 
   <div class="login-social-title">                
@@ -123,6 +122,52 @@
     <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
     <!-- login js-->
+    <script>
+      $(document).ready(function() {
+        $('#loginForm').on('submit', function(e) {
+          e.preventDefault();
+          
+          var username = $('#username').val();
+          var password = $('#password').val();
+          
+          $('#loginButton').prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processando...');
+          $('#loginMessage').hide();
+          
+          $.ajax({
+            url: 'http://127.0.0.1:9800/api/login',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+              username: username,
+              password: password
+            }),
+            success: function(response) {
+              // Armazena o token JWT no localStorage
+              localStorage.setItem('auth_token', response.token);
+              
+              // Se a API retornar dados do usuário, armazene-os também
+              if (response.user) {
+                localStorage.setItem('user_data', JSON.stringify(response.user));
+              }
+              
+              // Redireciona para a página de casos
+              window.location.href = '/casos';
+            },
+            error: function(xhr) {
+              $('#loginButton').prop('disabled', false).html('Entrar');
+              
+              // Exibe mensagem de erro
+              var errorMessage = 'Erro ao fazer login. Verifique suas credenciais.';
+              if (xhr.responseJSON && xhr.responseJSON.message) {
+                errorMessage = xhr.responseJSON.message;
+              }
+              
+              $('#loginMessage').text(errorMessage).show();
+            }
+          });
+        });
+      });
+    </script>
     <!-- Plugin used-->
   </body>
 </html>
