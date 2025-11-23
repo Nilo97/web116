@@ -15,7 +15,10 @@ class VerifyApiToken
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Verifica se o token está presente no localStorage via JavaScript
+        // Como estamos usando verificação de token no lado do cliente (JavaScript),
+        // este middleware serve apenas como um ponto de verificação no servidor
+        // Você pode adicionar lógica adicional aqui se necessário
+        
         return $next($request);
     }
 }

@@ -156,7 +156,7 @@
               }
               
               // Redireciona para a página de casos
-              // window.location.href = '/casos';
+              window.location.href = '/casos';
             },
             error: function(xhr) {
               $('#loginButton').prop('disabled', false).html('Entrar');

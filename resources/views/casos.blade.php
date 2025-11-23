@@ -397,216 +397,421 @@
                   <div class="card-body">
                     <div class="tab-content" id="top-tabContent">
                       <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
-                        <div class="row">
-                          <div class="col-xxl-4 col-lg-6">                  
-                              <div class="project-box">
-                                          <!-- Status do caso -->
-                                            <span class="badge badge-primary">Doing</span>
-
-                                            <!-- Localização do caso -->
-                                            <h6>Nampula  - Angoche</h6>
-
-                                            <!-- Informações da vítima e tipo de caso -->
-                                            <div class="media mb-2">
-                                              <img class="img-20 me-2 rounded-circle" src="../assets/images/user/3.jpg" alt="Vitima" title="Vitima">
-                                              <div class="media-body">
-                                                <p><strong>Nome da Vítima:</strong>Maria Antonia M.</p>
-                                                <p><strong>Tipo de Caso:</strong> Casamento Prematuro</p>
-                                              </div>
-                                            </div>
-
-                                      <!-- Resumo da denúncia -->
-                                      <p><em>Recebida às 14h30, criança relata agressões no ambiente familiar. Encaminhada para análise urgente do serviço social.</em></p>
-
-                                      <!-- Detalhes do acompanhamento -->
-                                      <div class="row details mb-2">
-                                        <div class="row details mb-2">
-                                            <div class="col-12 mb-1">
-                                              <span><strong>Código da Denúncia:</strong> L1160002</span>
-                                            </div>
-                                            <div class="col-12 mb-1">
-                                              <span><strong>Data e Hora da Denúncia:</strong> 12/09/2025 14:30</span>
-                                            </div>
-                                            <div class="col-12 mb-1">
-                                              <span><strong>Origem:</strong> APP116</span>
-                                            </div>
-                                            <div class="col-12 mb-1">
-                                              <span><strong>Prioridade:</strong> URGENTE</span>
-                                            </div>
-                                      </div>
-                                      </div>
+                        <div class="row" id="cards-container">
+                          <!-- Cards serão preenchidos dinamicamente pela API -->
+                        </div>
+                      </div>
 
 
 
-                                              <!-- Responsáveis / Envolvidos -->
-                                              <div class="customers mb-2">
-                                                <ul>
-                                                  <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt="Assistente Social" title="Assistente Social"></li>
-                                                  <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt="Polícia" title="Polícia"></li>
-                                                  <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt="Conselho Tutelar" title="Conselho Tutelar"></li>
-                                                  <li class="d-inline-block ms-2">
-                                                    <p class="f-12">+3 Mais</p>
-                                                  </li>
-                                                </ul>
-                                              </div>
-
-                                      <!-- Progresso do atendimento -->
-                                                    <div class="project-status mt-2">
-                                                      <div class="media mb-1">
-                                                        <p>45%</p>
-                                                        <div class="media-body text-end"><span>Estágio de atendimento</span></div>
-                                                      </div>
-                                                      <div class="progress" style="height: 6px; border-radius: 3px;">
-                                                        <div class="progress-bar-animated bg-success progress-bar-striped" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                                      </div>
-                                                  
-                                                    </div>
-
-                                      <!-- Pequeno menu discreto de ações -->
-
-                                                  <div class="dropdown mt-2 text-end">
-                                                  
-                                                    <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
-                                                  <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                                                      <li>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#" id="btnVisaoGeral">
-                                                          <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
-                                                        </a>
-                                                      </li>
-                                                      <li>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#" id="btnRetirarUrgencia">
-                                                          <i class="fa fa-clock-o me-2 text-warning"></i> Retirar da Urgência
-                                                        </a>
-                                                      </li>
-                                                      <li>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#" id="btnAprovarCaso">
-                                                          <i class="fa fa-check-circle me-2 text-success"></i> Aprovar Caso
-                                                        </a>
-                                                      </li>
-                                                      <li>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#" id="btnReprovar">
-                                                          <i class="fa fa-times-circle me-2 text-secondary"></i> Reprovar
-                                                        </a>
-                                                      </li>
-                                                      <li>
-                                                        <a class="dropdown-item d-flex align-items-center text-danger" href="#" id="btnEliminar">
-                                                          <i class="fa fa-trash me-2"></i> Eliminar
-                                                        </a>
-                                                      </li>
-                                                  </ul>
-                                                                                                      </div>
-
-                              </div>
-                          </div>
-
-                          <div class="col-xxl-4 col-lg-6">
-                            <div class="project-box"><span class="badge badge-secondary">Doing</span>
-                             
-                                    <!-- Status do caso -->
-                                            <span class="badge badge-primary">Doing</span>
-
-                                            <!-- Localização do caso -->
-                                            <h6>Maputo Cidade - Maxaquene</h6>
-
-                                            <!-- Informações da vítima e tipo de caso -->
-                                            <div class="media mb-2">
-                                              <img class="img-20 me-2 rounded-circle" src="../assets/images/user/3.jpg" alt="Vitima" title="Vitima">
-                                              <div class="media-body">
-                                                <p><strong>Nome da Vítima:</strong>Maria Antonia M.</p>
-                                                <p><strong>Tipo de Caso:</strong> Abuso Infantil </p>
-                                              </div>
-                                            </div>
-
-                                      <!-- Resumo da denúncia -->
-                                      <p><em>Recebida às 14h30, criança relata agressões no ambiente familiar. Encaminhada para análise urgente do serviço social.</em></p>
-
-                                      <!-- Detalhes do acompanhamento -->
-                                      <div class="row details mb-2">
-                                        <div class="row details mb-2">
-                                            <div class="col-12 mb-1">
-                                              <span><strong>Código da Denúncia:</strong> L1160001</span>
-                                            </div>
-                                            <div class="col-12 mb-1">
-                                              <span><strong>Data e Hora da Denúncia:</strong> 12/09/2025 14:30</span>
-                                            </div>
-                                            <div class="col-12 mb-1">
-                                              <span><strong>Origem:</strong> APP116</span>
-                                            </div>
-                                            <div class="col-12 mb-1">
-                                              <span><strong>Prioridade:</strong> URGENTE</span>
-                                            </div>
-                                      </div>
-                                      </div>
+                      <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
+                        <div class="row" id="cards-container-profile">
+                          <!-- Cards serão preenchidos dinamicamente pela API -->
+                        </div>
+                      </div>
 
 
 
-                                              <!-- Responsáveis / Envolvidos -->
-                                              <div class="customers mb-2">
-                                                <ul>
-                                                  <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt="Assistente Social" title="Assistente Social"></li>
-                                                  <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt="Polícia" title="Polícia"></li>
-                                                  <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt="Conselho Tutelar" title="Conselho Tutelar"></li>
-                                                  <li class="d-inline-block ms-2">
-                                                    <p class="f-12">+3 Mais</p>
-                                                  </li>
-                                                </ul>
-                                              </div>
+                      <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
+                        <div class="row" id="cards-container-contact">
+                          <!-- Cards serão preenchidos dinamicamente pela API -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
 
-                                      <!-- Progresso do atendimento -->
-                                                    <div class="project-status mt-2">
-                                                      <div class="media mb-1">
-                                                        <p>45%</p>
-                                                        <div class="media-body text-end"><span>Estágio de atendimento</span></div>
-                                                      </div>
-                                                      <div class="progress" style="height: 6px; border-radius: 3px;">
-                                                        <div class="progress-bar-animated bg-success progress-bar-striped" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                                      </div>
-                                                  
-                                                    </div>
 
-                                      <!-- Pequeno menu discreto de ações -->
+        
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  // Função para formatar data
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  }
 
-                                                  <div class="dropdown mt-2 text-end">
-                                                  
-                                                    <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
-                                                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                                                        <li>
-                                                          <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
-                                                          </a>
-                                                      </li>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                          <i class="fa fa-clock-o me-2 text-warning"></i> Retirar da Urgência
-                                                        </a>
-                                                      </li>
-                                                      <li>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                          <i class="fa fa-check-circle me-2 text-success"></i> Aprovar Caso
-                                                        </a>
-                                                      </li>
-                                                      <li>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                          <i class="fa fa-times-circle me-2 text-secondary"></i> Reprovar
-                                                        </a>
-                                                      </li>
-                                                      <li>
-                                                        <a class="dropdown-item d-flex align-items-center text-danger" href="#">
-                                                          <i class="fa fa-trash me-2"></i> Eliminar
-                                                        </a>
-                                                      </li>
-                                                    </ul>
-                                                  </div>
-                          </div>
-                          </div>
+  // Função para determinar badge de status baseado no status do caso
+  function getStatusBadge(status) {
+    if (!status) {
+      return '<span class="badge badge-secondary">Sem Status</span>';
+    }
+    
+    const statusName = status.name || status;
+    const statusLower = statusName.toLowerCase();
+    
+    if (statusLower === 'pendente' || statusLower === 'pending') {
+      return '<span class="badge badge-warning">Pendente</span>';
+    } else if (statusLower === 'em andamento' || statusLower === 'em andamento' || statusLower === 'in progress' || statusLower === 'doing') {
+      return '<span class="badge badge-primary">Em Andamento</span>';
+    } else if (statusLower === 'concluído' || statusLower === 'concluido' || statusLower === 'completed' || statusLower === 'done') {
+      return '<span class="badge badge-success">Concluído</span>';
+    } else if (statusLower === 'cancelado' || statusLower === 'cancelled') {
+      return '<span class="badge badge-danger">Cancelado</span>';
+    } else {
+      return `<span class="badge badge-secondary">${statusName}</span>`;
+    }
+  }
 
-                          <div class="col-xxl-4 col-lg-6">
-                           <div class="project-box"><span class="badge badge-secondary">Doing</span>
-                             
-                                    <!-- Status do caso -->
-                                            <span class="badge badge-primary">Doing</span>
+  // Função para formatar prioridade
+  function formatPriority(priority) {
+    if (!priority || priority === null) {
+      return 'NORMAL';
+    }
+    return priority.toUpperCase();
+  }
 
-                                            <!-- Localização do caso -->
-                                            <h6>Maputo - Magoanine</h6>
+  // Função para criar um card de denúncia
+  function createReportCard(report) {
+    const creationDate = formatDate(report.creation_date);
+    const priority = report.priority;
+    const status = report.status ? report.status : null;
+    const statusName = status ? (status.name || 'Sem Status') : 'Sem Status';
+    const reportType = report.report_type ? report.report_type.name : 'Não especificado';
+    const description = report.description || 'Sem descrição disponível';
+    const title = report.title || 'Sem título';
+    const reportId = report.id || 'N/A';
+    
+    // Gerar código da denúncia baseado no ID
+    const reportCode = `L116${String(reportId).padStart(4, '0')}`;
+    
+    return `
+      <div class="col-xxl-4 col-lg-6">
+        <div class="project-box">
+          <!-- Status do caso -->
+          ${getStatusBadge(status)}
+          
+          <!-- Título da denúncia -->
+          <h6>${title}</h6>
+          
+          <!-- Informações da vítima e tipo de caso -->
+          <div class="media mb-2">
+            <img class="img-20 me-2 rounded-circle" src="../assets/images/user/3.jpg" alt="Vitima" title="Vitima">
+            <div class="media-body">
+              <p><strong>Tipo de Caso:</strong> ${reportType}</p>
+            </div>
+          </div>
+          
+          <!-- Resumo da denúncia -->
+          <p><em>${description}</em></p>
+          
+          <!-- Detalhes do acompanhamento -->
+          <div class="row details mb-2">
+            <div class="row details mb-2">
+              <div class="col-12 mb-1">
+                <span><strong>Código da Denúncia:</strong> ${reportCode}</span>
+              </div>
+              <div class="col-12 mb-1">
+                <span><strong>Data e Hora da Denúncia:</strong> ${creationDate}</span>
+              </div>
+              <div class="col-12 mb-1">
+                <span><strong>Origem:</strong> APP116</span>
+              </div>
+              <div class="col-12 mb-1">
+                <span><strong>Estado:</strong> ${statusName}</span>
+              </div>
+              <div class="col-12 mb-1">
+                <span><strong>Prioridade:</strong> ${formatPriority(priority)}</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Responsáveis / Envolvidos -->
+          <div class="customers mb-2">
+            <ul>
+              <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt="Assistente Social" title="Assistente Social"></li>
+              <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt="Polícia" title="Polícia"></li>
+              <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt="Conselho Tutelar" title="Conselho Tutelar"></li>
+              <li class="d-inline-block ms-2">
+                <p class="f-12">+3 Mais</p>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Progresso do atendimento -->
+          <div class="project-status mt-2">
+            <div class="media mb-1">
+              <p>45%</p>
+              <div class="media-body text-end"><span>Estágio de atendimento</span></div>
+            </div>
+            <div class="progress" style="height: 6px; border-radius: 3px;">
+              <div class="progress-bar-animated bg-success progress-bar-striped" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          
+          <!-- Pequeno menu discreto de ações -->
+          <div class="dropdown mt-2 text-end">
+            <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li>
+                <a class="dropdown-item d-flex align-items-center btnVisaoGeral" href="#" data-report-id="${reportId}">
+                  <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center btnRetirarUrgencia" href="#" data-report-id="${reportId}">
+                  <i class="fa fa-clock-o me-2 text-warning"></i> Retirar da Urgência
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center btnAprovarCaso" href="#" data-report-id="${reportId}">
+                  <i class="fa fa-check-circle me-2 text-success"></i> Aprovar Caso
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center btnReprovar" href="#" data-report-id="${reportId}">
+                  <i class="fa fa-times-circle me-2 text-secondary"></i> Reprovar
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center text-danger btnEliminar" href="#" data-report-id="${reportId}">
+                  <i class="fa fa-trash me-2"></i> Eliminar
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Função para buscar denúncias da API
+  function loadReports() {
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      console.error('Token de autenticação não encontrado');
+      Swal.fire({
+        title: 'Erro de Autenticação',
+        text: 'Você precisa estar autenticado para visualizar as denúncias.',
+        icon: 'error'
+      });
+      return;
+    }
+
+    // URL da API
+    const apiUrl = 'http://127.0.0.1:9800/api/reports';
+    
+    // Mostrar loading
+    const container = document.getElementById('cards-container');
+    container.innerHTML = '<div class="col-12 text-center"><div class="spinner-border" role="status"><span class="sr-only">Carregando...</span></div></div>';
+
+    // Fazer requisição à API
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro ao buscar denúncias: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Limpar container
+      container.innerHTML = '';
+      
+      // Verificar se há dados
+      if (data.data && data.data.length > 0) {
+        // Criar cards para cada denúncia
+        data.data.forEach(report => {
+          const cardHtml = createReportCard(report);
+          container.insertAdjacentHTML('beforeend', cardHtml);
+        });
+        
+        // Re-inicializar event listeners para os novos cards
+        initializeCardEventListeners();
+      } else {
+        container.innerHTML = '<div class="col-12 text-center"><p class="text-muted">Nenhuma denúncia encontrada.</p></div>';
+      }
+    })
+    .catch(error => {
+      console.error('Erro ao buscar denúncias:', error);
+      container.innerHTML = '<div class="col-12 text-center"><p class="text-danger">Erro ao carregar denúncias. Por favor, tente novamente.</p></div>';
+      Swal.fire({
+        title: 'Erro',
+        text: 'Não foi possível carregar as denúncias. Verifique sua conexão e tente novamente.',
+        icon: 'error'
+      });
+    });
+  }
+
+  // Função para inicializar event listeners dos cards
+  function initializeCardEventListeners() {
+    // Usar delegação de eventos para os botões dos cards
+    document.querySelectorAll('.btnVisaoGeral').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const reportId = this.getAttribute('data-report-id');
+        Swal.fire({
+          title: 'Visão Geral',
+          text: `Mostrando detalhes completos do caso #${reportId}...`,
+          icon: 'info'
+        });
+      });
+    });
+
+    document.querySelectorAll('.btnRetirarUrgencia').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const reportId = this.getAttribute('data-report-id');
+        Swal.fire({
+          title: 'Retirar da Urgência?',
+          text: `Deseja realmente retirar a prioridade urgente do caso #${reportId}?`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Sim, retirar',
+          cancelButtonText: 'Cancelar'
+        });
+      });
+    });
+
+    document.querySelectorAll('.btnAprovarCaso').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const reportId = this.getAttribute('data-report-id');
+        Swal.fire({
+          title: 'Aprovar Caso',
+          text: `Deseja aprovar o caso #${reportId}?`,
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Sim, aprovar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: 'Aprovado!',
+              text: `O caso #${reportId} foi aprovado com sucesso.`,
+              icon: 'success'
+            });
+          }
+        });
+      });
+    });
+
+    document.querySelectorAll('.btnReprovar').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const reportId = this.getAttribute('data-report-id');
+        Swal.fire({
+          title: 'Reprovar Caso',
+          text: `Deseja reprovar o caso #${reportId}?`,
+          icon: 'error',
+          showCancelButton: true,
+          confirmButtonText: 'Sim, reprovar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: 'Motivo da Reprovação',
+              text: 'Por favor, informe o motivo pelo qual este caso está sendo rejeitado:',
+              input: 'text',
+              inputPlaceholder: 'Digite o motivo',
+              showCancelButton: true,
+              confirmButtonText: 'Confirmar',
+              cancelButtonText: 'Cancelar'
+            }).then((reasonResult) => {
+              if (reasonResult.isConfirmed && reasonResult.value) {
+                Swal.fire({
+                  title: 'Caso Rejeitado',
+                  text: `O caso foi rejeitado pelo seguinte motivo: "${reasonResult.value}".`,
+                  icon: 'info'
+                });
+              }
+            });
+          }
+        });
+      });
+    });
+
+    document.querySelectorAll('.btnEliminar').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const reportId = this.getAttribute('data-report-id');
+        Swal.fire({
+          title: 'Eliminar Caso',
+          text: `Esta ação não pode ser desfeita. Deseja eliminar o caso #${reportId}?`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Sim, eliminar',
+          cancelButtonText: 'Cancelar'
+        });
+      });
+    });
+  }
+
+  // Carregar denúncias quando a página carregar
+  document.addEventListener('DOMContentLoaded', function() {
+    loadReports();
+  });
+
+  // Event listener para o botão de atualizar
+  document.addEventListener('DOMContentLoaded', function() {
+    // Procurar o botão de atualizar pelo texto ou classe
+    const refreshBtns = document.querySelectorAll('.btn-outline-primary');
+    refreshBtns.forEach(btn => {
+      if (btn.textContent.includes('Atualizar') || btn.querySelector('i[data-feather="refresh-cw"]')) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          loadReports();
+        });
+      }
+    });
+  });
+</script>
+        
+        
+        <!-- footer start-->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 footer-copyright">
+                <p class="mb-0">Copyright 2021-22 © Linha116 All   rights reserved.</p>
+              </div>
+              <div class="col-md-6">
+                <p class="pull-right mb-0"> Kamba <i class="fa fa- font-secondary"></i></p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.5.1.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/config.js"></script>
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+    <script src="../assets/js/bootstrap/bootstrap.min.js"></script>
+    <!-- Plugins JS start-->
+    <script src="../assets/js/prism/prism.min.js"></script>
+    <script src="../assets/js/clipboard/clipboard.min.js"></script>
+    <script src="../assets/js/custom-card/custom-card.js"></script>
+    <script src="../assets/js/height-equal.js"></script>
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/theme-customizer/customizer.js"></script>
+    <!-- login js-->
+    <!-- Plugin used-->
+  </body>
+</html>
 
                                             <!-- Informações da vítima e tipo de caso -->
                                             <div class="media mb-2">
@@ -1673,167 +1878,6 @@
           </div>
           <!-- Container-fluid Ends-->
         </div>
-
-
-        
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-  document.getElementById('btnVisaoGeral').addEventListener('click', function() {
-    Swal.fire({
-      title: 'Visão Geral',
-      text: 'Mostrando detalhes completos do caso...',
-      icon: 'info'
-    });
-  });
-
-  document.getElementById('btnRetirarUrgencia').addEventListener('click', function() {
-    Swal.fire({
-      title: 'Retirar da Urgência?',
-      text: "Deseja realmente retirar a prioridade urgente deste caso?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sim, retirar',
-      cancelButtonText: 'Cancelar'
-    });
-  });
-
-  // document.getElementById('btnAprovarCaso').addEventListener('click', function() {
-  //   Swal.fire({
-  //     title: 'Aprovar Caso',
-  //     text: 'Deseja aprovar este caso?',
-  //     icon: 'success',
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Sim, aprovar',
-  //     cancelButtonText: 'Cancelar'
-  //   });
-  // });
-
-
-document.getElementById('btnAprovarCaso').addEventListener('click', function() {
-  Swal.fire({
-    title: 'Aprovar Caso',
-    text: 'Deseja aprovar este caso?',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonText: 'Sim, aprovar',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Caso aprovado
-      Swal.fire({
-        title: 'Aprovado!',
-        text: 'O caso foi aprovado com sucesso.',
-        icon: 'success',
-        showCancelButton: true,
-        confirmButtonText: 'Sim, iniciar processo',
-        cancelButtonText: 'Não, depois'
-      }).then((startProcess) => {
-        if (startProcess.isConfirmed) {
-          // Perguntar quem será responsável
-          Swal.fire({
-            title: 'Responsável pelo Caso',
-            text: 'Por favor, informe quem dará seguimento ao caso:',
-            input: 'text',
-            inputPlaceholder: 'Digite o nome do responsável',
-            showCancelButton: true,
-            confirmButtonText: 'Confirmar',
-            cancelButtonText: 'Cancelar'
-          }).then((responsible) => {
-            if (responsible.isConfirmed && responsible.value) {
-              // Nome informado
-              Swal.fire({
-                title: 'Acompanhamento Iniciado',
-                text: `O caso será dado seguimento pelo(a) ${responsible.value}.`,
-                icon: 'success'
-              });
-              // Aqui você pode colocar a lógica de salvar o responsável no seu sistema
-            } else if (responsible.dismiss === Swal.DismissReason.cancel) {
-              Swal.fire({
-                title: 'Cancelado',
-                text: 'O caso permanece aprovado, mas o responsável não foi definido.',
-                icon: 'info'
-              });
-            }
-          });
-        } else {
-          // Usuário escolheu não iniciar agora
-          Swal.fire({
-            title: 'Aguardando Início',
-            text: 'O caso permanece aprovado, mas o processo ainda não foi iniciado.',
-            icon: 'info'
-          });
-        }
-      });
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      Swal.fire({
-        title: 'Cancelado',
-        text: 'Nenhuma alteração foi realizada.',
-        icon: 'info'
-      });
-    }
-  });
-});
-
-
-
-document.getElementById('btnReprovar').addEventListener('click', function() {
-  Swal.fire({
-    title: 'Reprovar Caso',
-    text: 'Deseja reprovar este caso?',
-    icon: 'error',
-    showCancelButton: true,
-    confirmButtonText: 'Sim, reprovar',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Solicitar motivo da reprovação
-      Swal.fire({
-        title: 'Motivo da Reprovação',
-        text: 'Por favor, informe o motivo pelo qual este caso está sendo rejeitado:',
-        input: 'text',
-        inputPlaceholder: 'Digite o motivo',
-        showCancelButton: true,
-        confirmButtonText: 'Confirmar',
-        cancelButtonText: 'Cancelar'
-      }).then((reasonResult) => {
-        if (reasonResult.isConfirmed && reasonResult.value) {
-          // Mostrar relatório final
-          Swal.fire({
-            title: 'Caso Rejeitado',
-            text: `O caso foi rejeitado pelo seguinte motivo: "${reasonResult.value}".`,
-            icon: 'info'
-          });
-          // Aqui você pode adicionar lógica para registrar a reprovação e o motivo no seu sistema
-        } else if (reasonResult.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire({
-            title: 'Cancelado',
-            text: 'O caso permanece em análise, nenhuma alteração foi feita.',
-            icon: 'info'
-          });
-        }
-      });
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      Swal.fire({
-        title: 'Cancelado',
-        text: 'Nenhuma alteração foi realizada.',
-        icon: 'info'
-      });
-    }
-  });
-});
-
-
-  document.getElementById('btnEliminar').addEventListener('click', function() {
-    Swal.fire({
-      title: 'Eliminar Caso',
-      text: 'Esta ação não pode ser desfeita. Deseja continuar?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sim, eliminar',
-      cancelButtonText: 'Cancelar'
-    });
-  });
-</script>
 
 
 
