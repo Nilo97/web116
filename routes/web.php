@@ -25,5 +25,13 @@ Route::middleware(['api.token'])->group(function () {
     });
 });
 
+Route::get('/users', function () {
+    return view('users');
+});
+
+Route::get('/users2', function () {
+    return view('users2');
+});
+
 
 
