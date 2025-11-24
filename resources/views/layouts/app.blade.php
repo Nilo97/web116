@@ -11,7 +11,7 @@
         @include('layouts.partials.sidebar')
 
         <div class="page-body">
-            @yield('content') {{-- Aqui vai o conteúdo específico de cada página --}}
+            @yield('content') {{-- Aqui vai v o conteúdo específico de cada página --}}
         </div>
 
         @include('layouts.partials.footer')
