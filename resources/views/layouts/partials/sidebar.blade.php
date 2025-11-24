@@ -32,7 +32,7 @@
                   <div><h6>Painel</h6></div>
                 </li>
                 <li>
-                  <a class="nav-link" href="index.html"><i data-feather="home"></i><span>Visão Geral</span></a>
+                  <a class="nav-link" href="{{ route('dashboard') }}"><i data-feather="home"></i><span>Visão Geral</span></a>
                 </li>
 
                 <!-- Denúncias -->
@@ -82,7 +82,7 @@
                   <a class="nav-link menu-title" href="javascript:void(0)">
                     <i data-feather="bar-chart-2"></i><span>Relatórios</span></a>
                   <ul class="nav-submenu menu-content">
-                    <li><a href="#">Relatório Geral</a></li>
+                    <li><a href="{{ route('dashboard') }}">Relatório Geral</a></li>
                     <li><a href="#">Por Tipo de Denúncia</a></li>
                     <li><a href="#">Por Província</a></li>
                     <li><a href="#">Por Período</a></li>
@@ -97,9 +97,9 @@
                   <a class="nav-link menu-title" href="javascript:void(0)">
                     <i data-feather="settings"></i><span>Configurações</span></a>
                   <ul class="nav-submenu menu-content">
-                    <li><a href="#">Gestão de Utilizadores</a></li>
+                    <li><a href="{{ route('users') }}">Gestão de Utilizadores</a></li>
                     <li><a href="#">Perfis e Permissões</a></li>
-                    <li><a href="#">Parâmetros do Sistema</a></li>
+                    <li><a href="{{ route('configuracao') }}">Parâmetros do Sistema</a></li>
                   </ul>
                 </li>
 
@@ -108,20 +108,19 @@
                   <div><h6>Ajuda</h6></div>
                 </li>
                 <li>
-                  <a class="nav-link" href="#"><i data-feather="help-circle"></i><span>Perguntas Frequentes</span></a>
+                  <a class="nav-link" href="{{ route('perguntas') }}"><i data-feather="help-circle"></i><span>Perguntas Frequentes</span></a>
                 </li>
                 <li>
-                  <a class="nav-link" href="#"><i data-feather="phone"></i><span>Contacto de Suporte</span></a>
+                  <a class="nav-link" href="{{ route('suporte') }}"><i data-feather="phone"></i><span>Contacto de Suporte</span></a>
                 </li>
 
                 <!-- Logout -->
                 <li>
-                  <a class="nav-link" href="login.html"><i data-feather="log-out"></i><span>Sair</span></a>
+                  <a class="nav-link" href="login"><i data-feather="log-out"></i><span>Sair</span></a>
                 </li>
 
               </ul>
             </div>
           </div>
         </nav>
-
-      </header>
+  </header>

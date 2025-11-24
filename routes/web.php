@@ -8,7 +8,7 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');;
 
 // Rotas protegidas que requerem autenticação
 Route::middleware(['api.token'])->group(function () {
@@ -25,13 +25,37 @@ Route::middleware(['api.token'])->group(function () {
     });
 });
 
+
+
+
 Route::get('/users', function () {
     return view('users');
-});
+})->name('users');
 
 Route::get('/users2', function () {
     return view('users2');
-});
+})->name('users2');
+
+Route::get('/configuracao', function () {
+    return view('configuracao');
+})->name('configuracao');
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('/perguntas', function () {
+    return view('perguntas');
+})->name('perguntas');
+
+Route::get('/suporte', function () {
+    return view('suporte');
+})->name('suporte');
 
 
 
