@@ -26,8 +26,6 @@ Route::middleware(['api.token'])->group(function () {
 });
 
 
-
-
 Route::get('/users', function () {
     return view('users');
 })->name('users');
@@ -57,5 +55,19 @@ Route::get('/suporte', function () {
     return view('suporte');
 })->name('suporte');
 
+Route::get('/casos1', function () {
+    return view('casos1');
+})->name('casos1');
 
 
+Route::get('/file-manager1', function () {
+    return view('file-manager1');
+})->name('file-manager1');
+
+ Route::get('/formDenuncia', function () {
+        return view('formDenuncia');
+    });
+
+    Route::get('/formDenuncia1', function () {
+    return view('formDenuncia1');
+})->name('formDenuncia1');
