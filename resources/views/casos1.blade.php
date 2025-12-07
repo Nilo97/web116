@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Gestão de Utilizadores')
+@section('title', 'Gestao de Casos')
 
 @section('content')
 
@@ -220,8 +220,13 @@
       renderPagination();
     })
     .catch(err => {
-      container.innerHTML = '<div class="col-12 text-center py-5 text-danger">Erro ao carregar denúncias.</div>';
+      container.innerHTML = '<div class="col-12 text-center py-5 text-danger">Erro ao carregar as denúncias. Verifique o login e tente novamente.</div>';
       console.error(err);
+   // Se o erro for devido ao token ausente ou inválido → redireciona
+  setTimeout(() => {
+    window.location.href = '/login';
+  }, 1500); // espera 1.5s só para mostrar a mensagem
+
     });
   }
 
