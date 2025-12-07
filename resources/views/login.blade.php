@@ -156,16 +156,30 @@
               }
               
               // Redireciona para a página de casos
-              window.location.href = '/casos';
+              window.location.href = '/casos1';
             },
             error: function(xhr) {
               $('#loginButton').prop('disabled', false).html('Entrar');
               
-              // Exibe mensagem de erro
+              // // Exibe mensagem de erro
+              // var errorMessage = 'Erro ao fazer login. Verifique suas credenciais.';
+              // if (xhr.responseJSON && xhr.responseJSON.message) {
+              //   errorMessage = xhr.responseJSON.message;
+              // }
+
               var errorMessage = 'Erro ao fazer login. Verifique suas credenciais.';
+
               if (xhr.responseJSON && xhr.responseJSON.message) {
                 errorMessage = xhr.responseJSON.message;
               }
+
+                          Swal.fire({
+                icon: 'error',
+                title: 'Login falhou',
+                html: `<strong>${errorMessage}</strong>`,
+                confirmButtonText: 'Tentar novamente',
+                confirmButtonColor: '#e74c3c'
+              });
               
               $('#loginMessage').text(errorMessage).show();
             }
@@ -173,6 +187,7 @@
         });
       });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Plugin used-->
   </body>
 </html>

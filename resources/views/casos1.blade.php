@@ -73,6 +73,19 @@
 
 @push('scripts')
 
+<!-- <script>
+  // VERIFICAÇÃO GLOBAL DO TOKEN (antes de carregar a página)
+  document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('auth_token');
+
+    // Se o token não existir → redireciona imediatamente
+    if (!token) {
+      window.location.href = '/login';
+      return;
+    }
+  }); -->
+
+
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   const API_BASE = 'http://127.0.0.1:9800/api/reports';

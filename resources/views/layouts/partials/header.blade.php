@@ -116,7 +116,7 @@
 
                 <!-- Logout -->
                 <li>
-                  <a class="nav-link" href="#"><i data-feather="log-out"></i><span>Sair</span></a>
+                  <a class="nav-link" id="btn-logout" href="javascript:void(0)"><i data-feather="log-out"></i><span>Sair</span></a>
                 </li>
 
               </ul>
@@ -125,3 +125,55 @@
         </nav>
 
       </header>
+
+<!-- SweetAlert2 e Feather Icons -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Inicializa os ícones do Feather
+  feather.replace();
+
+  // Logout
+  const logoutBtn = document.getElementById('btn-logout');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function(e) {
+      e.preventDefault(); // previne ação padrão
+
+      Swal.fire({
+        title: 'Deseja sair?',
+        text: "Tem certeza que pretende terminar a sessão?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#aaa',
+        confirmButtonText: 'Sim, sair',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Remove token ou dados de sessão
+          localStorage.removeItem('auth_token');
+
+          // Feedback visual
+          Swal.fire({
+            icon: 'success',
+            title: 'Sessão terminada!',
+            text: 'Até logo!',
+            timer: 1500,
+            showConfirmButton: false
+          });
+
+          // Redireciona para página de login após 1,5s
+          setTimeout(() => {
+            window.location.href = '/login';
+          }, 1500);
+        }
+      });
+    });
+  }
+});
+</script>
