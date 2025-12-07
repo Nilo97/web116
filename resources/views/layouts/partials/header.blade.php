@@ -45,7 +45,7 @@
                   <ul class="nav-submenu menu-content">
                     <li><a href="#">Nova Denúncia</a></li>
                     <li><a href="#">Todas as Denúncias</a></li>
-                    <li><a href="#">Tipos de Denúncia</a></li>
+                    <li><a href="#">Audio Denuncia</a></li>
                     <li><a href="#">Estados das Denúncias</a></li>
                   </ul>
                 </li>
@@ -116,7 +116,7 @@
 
                 <!-- Logout -->
                 <li>
-                  <a class="nav-link" href="login.html"><i data-feather="log-out"></i><span>Sair</span></a>
+                  <a class="nav-link" href="#"><i data-feather="log-out"></i><span>Sair</span></a>
                 </li>
 
               </ul>

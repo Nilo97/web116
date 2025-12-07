@@ -2,11 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/login', function () {
+    return view('login');
+})->name('login');;
+
+Route::get('/', function () {
     return view('login');
 })->name('login');;
 
@@ -71,3 +75,8 @@ Route::get('/file-manager1', function () {
     Route::get('/formDenuncia1', function () {
     return view('formDenuncia1');
 })->name('formDenuncia1');
+
+    Route::get('/audiodenuncia', function () {
+    return view('audiodenuncia');
+})->name('audiodenuncia');
+
