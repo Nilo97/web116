@@ -80,3 +80,7 @@ Route::get('/file-manager1', function () {
     return view('audiodenuncia');
 })->name('audiodenuncia');
 
+
+    Route::get('/formulario', function () {
+    return view('formulario');
+})->name('formulario');
