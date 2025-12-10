@@ -4,6 +4,7 @@
     @include('layouts.partials.head')
     @stack('styles')
 </head>
+
 <body>
     @include('layouts.partials.loader')
 

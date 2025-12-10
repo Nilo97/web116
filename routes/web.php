@@ -84,3 +84,8 @@ Route::get('/file-manager1', function () {
     Route::get('/formulario', function () {
     return view('formulario');
 })->name('formulario');
+
+
+    Route::get('/appform', function () {
+    return view('appform');
+})->name('appform');
