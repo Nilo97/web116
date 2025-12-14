@@ -3,14 +3,10 @@
 @section('title', 'Gestão de Utilizadores')
 
 @section('content')
-
-      
-  
-  
 <div class="container py-5">
   <h2 class="text-center mb-4"><i class="fa-solid fa-users me-2"></i>Gestão de Utilizadores</h2>
    <div class="d-flex justify-content-end mb-3">
-    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#createUserModal">
+   <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#createUserModal">
       <i class="fa-solid fa-user-plus me-2"></i>Criar Novo Utilizador
     </button>
   </div>
@@ -22,54 +18,17 @@
           <th>#</th>
           <th>Nome Completo</th>
           <th>Email</th>
-          <th>Password</th>
-          <th>Tipo de Utilizador</th>
+          <th>Funções</th>
           <th>Status</th>
           <th>Data de Criação</th>
           <th>Ações</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>João da Silva</td>
-          <td>joao@email.com</td>
-          <td>••••••••</td>
-          <td>Administrador</td>
-          <td><span class="badge bg-success">Ativo</span></td>
-          <td>12/11/2025</td>
-          <td>
-            <button class="btn btn-sm btn-info me-1" title="Visualizar">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <button class="btn btn-sm btn-warning me-1" title="Editar">
-              <i class="fa-solid fa-pen-to-square"></i>
-            </button>
-            <button class="btn btn-sm btn-danger" title="Eliminar">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Maria Fernandes</td>
-          <td>maria@email.com</td>
-          <td>••••••••</td>
-          <td>Operador</td>
-          <td><span class="badge bg-secondary">Inativo</span></td>
-          <td>15/11/2025</td>
-          <td>
-            <button class="btn btn-sm btn-info me-1"><i class="fa-solid fa-eye"></i></button>
-            <button class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
-          </td>
-        </tr>
+        <!-- O conteúdo será preenchido dinamicamente -->
       </tbody>
     </table>
   </div>
-</div>
-
-</div>
 </div>
 
 <!-- Modal Criar Novo Utilizador -->
@@ -85,99 +44,40 @@
           <div class="row g-3">
             <!-- Nome Completo -->
             <div class="col-md-6">
-              <label class="form-label"><i class="fa-solid fa-user me-2"></i>Nome Completo</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                <input type="text" class="form-control" placeholder="Nome completo do utilizador" required>
-              </div>
-              <div class="invalid-feedback">Por favor, insira o nome completo.</div>
+              <label class="form-label">Nome Completo</label>
+              <input type="text" id="name" class="form-control" placeholder="Nome completo do utilizador" required>
             </div>
 
             <!-- Email -->
             <div class="col-md-6">
-              <label class="form-label"><i class="fa-solid fa-envelope me-2"></i>Email</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-                <input type="email" class="form-control" placeholder="Email do utilizador" required>
-              </div>
-              <div class="invalid-feedback">Insira um email válido.</div>
+              <label class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" placeholder="Email do utilizador" required>
+            </div>
+
+            <!-- Username -->
+            <div class="col-md-6">
+                <label class="form-label">Username</label>
+                <input type="text" id="username" class="form-control" placeholder="Nome de usuário" required>
             </div>
 
             <!-- Telefone -->
             <div class="col-md-6">
-              <label class="form-label"><i class="fa-solid fa-phone me-2"></i>Telefone / WhatsApp</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                <input type="tel" class="form-control" placeholder="+258 xxx xxx xxx" required pattern="^\+258\d{8,9}$">
-              </div>
-              <div class="invalid-feedback">Número de telefone inválido. Ex: +258 84 123 4567</div>
-            </div>
-
-            <!-- Sexo -->
-            <div class="col-md-6">
-              <label class="form-label"><i class="fa-solid fa-venus-mars me-2"></i>Sexo</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-venus-mars"></i></span>
-                <select class="form-select" required>
-                  <option value="">Selecionar sexo</option>
-                  <option value="masculino">Masculino</option>
-                  <option value="feminino">Feminino</option>
-                  <option value="outro">Outro</option>
-                </select>
-              </div>
-              <div class="invalid-feedback">Selecione o sexo.</div>
+              <label class="form-label">Telefone / WhatsApp</label>
+              <input type="tel" id="phone_number" class="form-control" placeholder="+258 xxx xxx xxx" required>
             </div>
 
             <!-- Password -->
             <div class="col-md-6">
-              <label class="form-label"><i class="fa-solid fa-key me-2"></i>Password</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
-                <input type="password" class="form-control" placeholder="Senha segura" required minlength="6">
-              </div>
-              <div class="invalid-feedback">A senha deve ter pelo menos 6 caracteres.</div>
+              <label class="form-label">Password</label>
+              <input type="password" id="password" class="form-control" placeholder="Senha segura" required minlength="6">
             </div>
 
-            <!-- Tipo de Utilizador -->
+            <!-- Funções (Roles) -->
             <div class="col-md-6">
-              <label class="form-label"><i class="fa-solid fa-user-shield me-2"></i>Tipo de Utilizador</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-user-shield"></i></span>
-                <select class="form-select" required>
-                  <option value="">Selecionar tipo</option>
-                  <option value="admin">Administrador</option>
-                  <option value="operador">Operador</option>
-                  <option value="parceiro">Parceiro</option>
-                </select>
-              </div>
-              <div class="invalid-feedback">Selecione o tipo de utilizador.</div>
-            </div>
-
-            <!-- Status -->
-            <div class="col-md-6">
-              <label class="form-label"><i class="fa-solid fa-toggle-on me-2"></i>Status</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-toggle-on"></i></span>
-                <select class="form-select" required>
-                  <option value="ativo">Ativo</option>
-                  <option value="inativo">Inativo</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Endereço -->
-            <div class="col-md-12">
-              <label class="form-label"><i class="fa-solid fa-location-dot me-2"></i>Endereço</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
-                <input type="text" class="form-control" placeholder="Rua, Bairro, Cidade">
-              </div>
-            </div>
-
-            <!-- Observações -->
-            <div class="col-md-12">
-              <label class="form-label"><i class="fa-solid fa-file-lines me-2"></i>Observações</label>
-              <textarea class="form-control" rows="3" placeholder="Notas adicionais sobre o utilizador"></textarea>
+              <label class="form-label">Funções</label>
+              <select id="rolesSelect" class="form-select" style="width: 100% !important;" multiple required>
+                <!-- Opções de funções serão carregadas aqui -->
+              </select>
             </div>
           </div>
 
@@ -189,7 +89,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <!-- Estilo Personalizado -->
 <style>
@@ -251,36 +150,13 @@ document.querySelectorAll('.btn-danger').forEach(button => {
 
 <script>
 // Validação em tempo real do formulário
-const form = document.getElementById('createUserForm');
 
-form.addEventListener('input', function(e) {
-  const target = e.target;
-  if(target.checkValidity()) {
-    target.classList.remove('is-invalid');
-    target.classList.add('is-valid');
-  } else {
-    target.classList.remove('is-valid');
-    target.classList.add('is-invalid');
-  }
-});
-
-// Validação no submit
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  if(form.checkValidity()) {
-    alert('✅ Utilizador criado com sucesso!');
-    // Aqui você pode adicionar o utilizador na tabela
-    form.reset();
-    form.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
-    form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
-    bootstrap.Modal.getInstance(document.getElementById('createUserModal')).hide();
-  } else {
-    e.stopPropagation();
-    form.querySelectorAll('input, select, textarea').forEach(el => {
-      if(!el.checkValidity()) el.classList.add('is-invalid');
-    });
-  }
-});
+const authToken = localStorage.getItem('auth_token');
+if (!authToken) {
+        console.error('Token de autenticação não encontrado.');
+        tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Erro: Token de autenticação não encontrado. Faça o login novamente.</td></tr>';
+        return;
+    }
 </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -328,4 +204,185 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
 
 
 @endsection
+
+@push('scripts')
+<script>
+function loadUsers() {
+  const tableBody = document.querySelector('#usersTable tbody');
+    const rolesApiUrl = `{{ env('API_ROLES_URL', 'http://127.0.0.1:9800/api/roles') }}`;
+    const authToken = localStorage.getItem('auth_token');
+    const apiUrl = `{{ env('API_USERS_URL', 'http://127.0.0.1:9800/api/users?page=1&per_page=10') }}`;
+
+    if (!authToken) {
+        console.error('Token de autenticação não encontrado.');
+        tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Erro: Token de autenticação não encontrado. Faça o login novamente.</td></tr>';
+        return;
+    }
+  const createUserModal = document.getElementById('createUserModal');
+    const rolesSelect = document.getElementById('rolesSelect');
+    console.log(rolesSelect);
+    createUserModal.addEventListener('show.bs.modal', function () {
+        fetch(rolesApiUrl, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            rolesSelect.innerHTML = ''; // Limpa opções existentes
+            data.data.roles.forEach(role => {
+                const option = new Option(role.name, role.id);
+                rolesSelect.add(option);
+            });
+            // Inicializar Select2
+            $(rolesSelect).select2({
+                dropdownParent: $('#createUserModal .modal-body'),
+                placeholder: 'Selecione as funções',
+                allowClear: true
+            });
+        })
+        .catch(error => console.error('Erro ao carregar funções:', error));
+    });
+
+  
+
+
+    tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Carregando...</td></tr>';
+
+    fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        tableBody.innerHTML = '';
+        const users = data.data.users;
+
+        if (users && users.length > 0) {
+            users.forEach(user => {
+                const row = tableBody.insertRow();
+                
+                row.insertCell(0).textContent = user.id;
+                row.insertCell(1).textContent = user.name;
+                row.insertCell(2).textContent = user.email;
+
+                const roles = user.roles.map(role => role.name).join(', ');
+                row.insertCell(3).textContent = roles || 'N/A';
+
+                // A API não fornece status, então usamos um placeholder
+                const statusCell = row.insertCell(4);
+                statusCell.innerHTML = `<span class="badge bg-success">Ativo</span>`; 
+
+                row.insertCell(5).textContent = new Date(user.creation_date).toLocaleDateString();
+
+                const actionsCell = row.insertCell(6);
+                actionsCell.innerHTML = `
+                    <button class="btn btn-primary btn-sm me-1" title="Editar"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn btn-danger btn-sm" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                `;
+            });
+        } else {
+            tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Nenhum utilizador encontrado.</td></tr>';
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao buscar utilizadores:', error);
+        tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Falha ao carregar os utilizadores.</td></tr>';
+    });
+}
+document.addEventListener('DOMContentLoaded', function () {
+  loadUsers();
+});
+
+const form = document.getElementById('createUserForm');
+form.addEventListener('input', function(e) {
+  const target = e.target;
+  if(target.checkValidity()) {
+    target.classList.remove('is-invalid');
+    target.classList.add('is-valid');
+  } else {
+    target.classList.remove('is-valid');
+    target.classList.add('is-invalid');
+  }
+});
+
+// Validação no submit
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if(form.checkValidity()) {
+
+    alert("test")
+    const formData = new FormData(createUserForm);
+        const selectedRoles = $(rolesSelect).val();
+        // const authToken = localStorage.getItem('auth_token');
+        const userData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            username: document.getElementById('email').value, // Gera username a partir do email
+            password: document.getElementById('password').value,
+            phone_number: document.getElementById('phone_number').value,
+            roles: selectedRoles.map(id => parseInt(id, 10))
+        };
+
+        fetch('http://127.0.0.1:9800/api/users', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${ localStorage.getItem('auth_token')}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => {
+            if (response.status === 201) {
+                return response.json();
+            }
+            throw new Error('Falha ao criar utilizador');
+        })
+        .then(data => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso!',
+                text: data.message,
+                timer: 2000,
+                showConfirmButton: false
+            });
+            bootstrap.Modal.getInstance(createUserModal).hide();
+            createUserForm.reset();
+            $(rolesSelect).val(null).trigger('change');
+            loadUsers(); // Recarrega a tabela de utilizadores
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo deu errado! Não foi possível criar o utilizador.'
+            });
+        });
+    // Aqui você pode adicionar o utilizador na tabela
+    form.reset();
+    form.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+    form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+    bootstrap.Modal.getInstance(document.getElementById('createUserModal')).hide();
+  } else {
+    e.stopPropagation();
+    form.querySelectorAll('input, select, textarea').forEach(el => {
+      if(!el.checkValidity()) el.classList.add('is-invalid');
+    });
+  }
+});
+</script>
+@endpush
 
