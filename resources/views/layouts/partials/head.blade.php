@@ -36,8 +36,3 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
 
-<style>
-    .select2 .select2-container .select2-container--default .select2-container--below .select2-container--focus {
-        width: 100% !important;
-    }
-</style>

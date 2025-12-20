@@ -446,44 +446,47 @@
   function createCard(report) {
     const priority = report.priority ? report.priority.toUpperCase() : 'NORMAL';
     const priorityClass = priority === 'URGENTE' ? 'text-danger' : '';
+    const cardLink = `{{ route('formDenuncia.show', ['id' => '__ID__']) }}`.replace('__ID__', report.id);
 
     return `
-      <div class="col-xxl-4 col-lg-6">
-        <div class="project-box">
-          ${getStatusBadge(report.status?.name)}
-          <h6>${report.title || 'Sem título'}</h6>
-          <div class="media mb-2">
-            <img class="img-20 me-2 rounded-circle" src="../assets/images/user/3.jpg" alt="">
-            <div class="media-body">
-              <p><strong>Reportador:</strong> ${report.reporter?.full_name || 'Anónimo'}</p>
-              <p><strong>Tipo:</strong> ${report.report_type?.name || 'N/D'}</p>
+      <div class="col-xxl-3 col-md-6">
+        <a href="${cardLink}" class="text-decoration-none text-dark">
+          <div class="project-box">
+            ${getStatusBadge(report.status?.name)}
+            <h6>${report.title || 'Sem título'}</h6>
+            <div class="media mb-2">
+              <img class="img-20 me-2 rounded-circle" src="../assets/images/user/3.jpg" alt="">
+              <div class="media-body">
+                <p><strong>Reportador:</strong> ${report.reporter?.full_name || 'Anónimo'}</p>
+                <p><strong>Tipo:</strong> ${report.report_type?.name || 'N/D'}</p>
+              </div>
+            </div>
+            <p><em>${report.description || 'Sem descrição'}</em></p>
+            <div class="row details mb-2">
+              <div class="col-12"><strong>Código:</strong> ${generateCode(report.id)}</div>
+              <div class="col-12"><strong>Data:</strong> ${formatDate(report.creation_date)}</div>
+              <div class="col-12"><strong>Distrito:</strong> ${report.district?.name || 'N/D'}</div>
+              <div class="col-12"><strong>Prioridade:</strong> <span class="${priorityClass}">${priority}</span></div>
+            </div>
+            <div class="customers mb-2">
+              <ul>
+                <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt=""></li>
+                <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/5.jpg" alt=""></li>
+                <li class="d-inline-block ms-2"><p class="f-12">+2</p></li>
+              </ul>
+            </div>
+            <div class="project-status mt-2">
+              <div class="progress" style="height:6px"><div class="progress-bar-animated bg-primary progress-bar-striped" style="width:35%"></div></div>
+            </div>
+            <div class="dropdown mt-3 text-end">
+              <a href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v fa-lg"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="detalheDenuncia.html?id=${report.id}"><i class="fa fa-eye me-2 text-primary"></i> Ver Detalhes</a></li>
+                <li><a class="dropdown-item text-danger" href="#"><i class="fa fa-trash me-2"></i> Eliminar</a></li>
+              </ul>
             </div>
           </div>
-          <p><em>${report.description || 'Sem descrição'}</em></p>
-          <div class="row details mb-2">
-            <div class="col-12"><strong>Código:</strong> ${generateCode(report.id)}</div>
-            <div class="col-12"><strong>Data:</strong> ${formatDate(report.creation_date)}</div>
-            <div class="col-12"><strong>Distrito:</strong> ${report.district?.name || 'N/D'}</div>
-            <div class="col-12"><strong>Prioridade:</strong> <span class="${priorityClass}">${priority}</span></div>
-          </div>
-          <div class="customers mb-2">
-            <ul>
-              <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/1.jpg" alt=""></li>
-              <li class="d-inline-block"><img class="img-30 rounded-circle" src="../assets/images/user/5.jpg" alt=""></li>
-              <li class="d-inline-block ms-2"><p class="f-12">+2</p></li>
-            </ul>
-          </div>
-          <div class="project-status mt-2">
-            <div class="progress" style="height:6px"><div class="progress-bar-animated bg-primary progress-bar-striped" style="width:35%"></div></div>
-          </div>
-          <div class="dropdown mt-3 text-end">
-            <a href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v fa-lg"></i></a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="detalheDenuncia.html?id=${report.id}"><i class="fa fa-eye me-2 text-primary"></i> Ver Detalhes</a></li>
-              <li><a class="dropdown-item text-danger" href="#"><i class="fa fa-trash me-2"></i> Eliminar</a></li>
-            </ul>
-          </div>
-        </div>
+        </a>
       </div>`;
   }
 

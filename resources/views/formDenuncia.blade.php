@@ -94,6 +94,47 @@
       border: 1px solid #ced4da;
     }
   </style>
+  <style>
+    .stepper-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .stepper-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #eef2f7;
+      color: #1e3d59;
+      flex: 1 1 180px;
+      min-width: 160px;
+      transition: all 0.2s ease;
+    }
+    .stepper-item.active {
+      background: #1e3d59;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .stepper-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(30, 61, 89, 0.15);
+      color: #1e3d59;
+      font-weight: 700;
+    }
+    .stepper-item.active .stepper-number {
+      background: #fff;
+      color: #1e3d59;
+    }
+  </style>
 
 
   
@@ -390,11 +431,99 @@
 
 
 <div class="container py-5">
-  <h2 class="text-center mb-5"><i class="fa-solid fa-shield-halved me-2"></i>Registo de Caso de Violência Contra Criança</h2>
+  <h2 class="text-center mb-4"><i class="fa-solid fa-shield-halved me-2"></i>Registo de Caso de Violência Contra Criança</h2>
 
-  <!-- Dados da Vítima -->
- <!-- Dados da Vítima -->
-<div class="form-section">
+  <div id="stepper" class="mb-4">
+    <div class="stepper-wrapper"></div>
+  </div>
+
+<!-- Dados da Denúncia -->
+<div class="form-section form-step" data-step="1" data-step-title="Dados da Denúncia">
+  <h5><i class="fa-solid fa-file-signature me-2"></i>Dados da Denúncia</h5>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label">Número da Denúncia</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-hashtag"></i></span>
+        <input type="text" class="form-control" id="reportNumber" placeholder="Ex: DN-2025-001">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Data da Denúncia</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-calendar-day"></i></span>
+        <input id="reportDate" type="date" class="form-control">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Hora da Denúncia</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-clock"></i></span>
+        <input id="timeDate" type="time" class="form-control">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Canal de Recepção</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-phone-volume"></i></span>
+        <select class="form-select js-example-basic-single">
+          <option>Telefone / Linha 116</option>
+          <option>Aplicativo Móvel</option>
+          <option>USSD</option>
+          <option>Email</option>
+          <option>Presencial</option>
+          <option>Outro</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Nome do Denunciante (se aplicável)</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-user-pen"></i></span>
+        <input id="reporterName" type="text" class="form-control" placeholder="Nome da pessoa que denunciou">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Contacto do Denunciante</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+        <input id="reporterContact" type="tel" class="form-control" placeholder="+258 xxx xxx xxx">
+      </div>
+    </div>
+    <div class="col-12">
+      <label class="form-label">Descrição Inicial da Denúncia</label>
+      <textarea id="reportDescription" class="form-control" rows="4" placeholder="Resumo do ocorrido conforme informado pelo denunciante..."></textarea>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Urgência / Prioridade</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-exclamation-triangle"></i></span>
+        <select id="prioritySelect" class="form-select">
+          <option selected disabled>A carregar...</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Situação Atual</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-info-circle"></i></span>
+        <select id="statusSelect" class="form-select">
+          <option selected disabled>A carregar...</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-12">
+      <label class="form-label">Observações / Informações Adicionais</label>
+      <textarea class="form-control" rows="3" placeholder="Notas relevantes sobre a denúncia, contexto ou instruções especiais..."></textarea>
+    </div>
+  </div>
+</div>
+
+
+<!-- Testem,unha -->
+<!-- Dados da Vítima -->
+<!-- Dados da Vítima -->
+<div class="form-section form-step" data-step="2" data-step-title="Dados da Vítima">
   <h5><i class="fa-solid fa-child me-2"></i>Dados da Vítima</h5>
   <div class="row g-3">
     <div class="col-md-6">
@@ -440,7 +569,29 @@
       <label class="form-label">Identidade / BI / Certidão de Nascimento</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
-        <input type="text" class="form-control" placeholder="Número do documento">
+        <input type="text" id="victimDocumentNumber" class="form-control" placeholder="Número do documento">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">BI Frente</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
+        <input type="file" id="biFront" class="form-control" accept="image/*">
+      </div>
+      <small class="text-muted">Selecione a imagem da frente do BI</small>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">BI Verso</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
+        <input type="file" id="biBack" class="form-control" accept="image/*">
+      </div>
+      <small class="text-muted">Selecione a imagem do verso do BI</small>
+    </div>
+    <div class="col-12" id="biCheckResult" style="display:none;">
+      <div class="alert alert-info">
+        <i class="fa-solid fa-info-circle me-2"></i>
+        <span id="biCheckMessage"></span>
       </div>
     </div>
     <div class="col-md-6">
@@ -505,9 +656,9 @@
 </div>
 
 
-  <!-- Dados do Agressor -->
 <!-- Dados do Agressor -->
-<div class="form-section">
+<!-- Dados do Agressor -->
+<div class="form-section form-step" data-step="3" data-step-title="Dados do Agressor">
   <h5><i class="fa-solid fa-user-slash me-2"></i>Dados do Agressor</h5>
   <div class="row g-3">
     <div class="col-md-6">
@@ -590,98 +741,10 @@
 
 
   <!-- Detalhes do Caso -->
-<!-- Dados da Denúncia -->
-<div class="form-section">
-  <h5><i class="fa-solid fa-file-signature me-2"></i>Dados da Denúncia</h5>
-  <div class="row g-3">
-    <div class="col-md-6">
-      <label class="form-label">Número da Denúncia</label>
-      <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-hashtag"></i></span>
-        <input type="text" class="form-control" placeholder="Ex: DN-2025-001">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Data da Denúncia</label>
-      <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-calendar-day"></i></span>
-        <input type="date" class="form-control">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Hora da Denúncia</label>
-      <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-clock"></i></span>
-        <input type="time" class="form-control">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Canal de Recepção</label>
-      <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-phone-volume"></i></span>
-        <select class="form-select js-example-basic-single">
-          <option>Telefone / Linha 116</option>
-          <option>Aplicativo Móvel</option>
-          <option>USSD</option>
-          <option>Email</option>
-          <option>Presencial</option>
-          <option>Outro</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Nome do Denunciante (se aplicável)</label>
-      <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-user-pen"></i></span>
-        <input type="text" class="form-control" placeholder="Nome da pessoa que denunciou">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Contacto do Denunciante</label>
-      <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-        <input type="tel" class="form-control" placeholder="+258 xxx xxx xxx">
-      </div>
-    </div>
-    <div class="col-12">
-      <label class="form-label">Descrição Inicial da Denúncia</label>
-      <textarea class="form-control" rows="4" placeholder="Resumo do ocorrido conforme informado pelo denunciante..."></textarea>
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Urgência / Prioridade</label>
-      <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-exclamation-triangle"></i></span>
-        <select class="form-select">
-          <option>Alta</option>
-          <option>Média</option>
-          <option>Baixa</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Situação Atual</label>
-      <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-info-circle"></i></span>
-        <select class="form-select">
-          <option>Pendente</option>
-          <option>Em Investigação</option>
-          <option>Concluída</option>
-          <option>Encaminhada</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-12">
-      <label class="form-label">Observações / Informações Adicionais</label>
-      <textarea class="form-control" rows="3" placeholder="Notas relevantes sobre a denúncia, contexto ou instruções especiais..."></textarea>
-    </div>
-  </div>
-</div>
 
-
-<!-- Testem,unha -->
 
 <!-- Dados da Testemunha -->
-<div class="form-section">
+<div class="form-section form-step" data-step="4" data-step-title="Dados da Testemunha">
   <h5><i class="fa-solid fa-user-tie me-2"></i>Dados da Testemunha</h5>
   <div class="row g-3">
     <div class="col-md-6">
@@ -756,7 +819,7 @@
 <!-- Terceiros -->
 
 <!-- Encaminhamento a Terceiros -->
-<div class="form-section">
+<div class="form-section form-step" data-step="5" data-step-title="Encaminhamento a Terceiros">
   <h5><i class="fa-solid fa-share-from-square me-2"></i>Encaminhamento a Terceiros</h5>
   <div class="row g-3">
     <!-- Seleção do Terceiro -->
@@ -776,10 +839,11 @@
       <label class="form-label">Província / Cidade</label>
       <select id="provinceSelect" class="form-select">
         <option value="">Selecione a província</option>
-        <option value="maputo">Maputo</option>
-        <option value="beira">Beira</option>
-        <option value="nampula">Nampula</option>
       </select>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Distrito</label>
+      <input id="districtName" type="text" class="form-control" placeholder="Distrito" readonly>
     </div>
 
     <!-- Locais e Parecer do Terceiro -->
@@ -881,7 +945,7 @@ document.getElementById('thirdPartySelect').addEventListener('change', function(
 
   <!-- Intervenientes -->
 <!-- Histórico Geral do Caso (Somente Visualização) -->
-<div class="form-section">
+<div class="form-section form-step" data-step="6" data-step-title="Histórico do Caso">
   <h5><i class="fa-solid fa-book-open-reader me-2"></i>Histórico Geral do Caso</h5>
   <div class="row g-3">
     <div class="col-12">
@@ -909,16 +973,14 @@ document.getElementById('thirdPartySelect').addEventListener('change', function(
   </div>
 </div>
 
-<!-- Botão de Atualização da Denúncia -->
-<div class="text-center">
-  <button class="btn btn-primary btn-lg mt-3"><i class="fa-solid fa-floppy-disk me-2"></i>Atualizar Denúncia</button>
-</div>
-
-
-  <!-- Botão de Submissão -->
-  <div class="text-center">
-    <button class="btn btn-primary btn-lg mt-3"><i class="fa-solid fa-paper-plane me-2"></i>Submeter Caso</button>
+<div class="d-flex justify-content-between align-items-center mt-4">
+  <button id="prevStep" class="btn btn-outline-primary" type="button"><i class="fa-solid fa-arrow-left me-2"></i>Anterior</button>
+  <div class="text-center flex-grow-1">
+    <button class="btn btn-primary btn-lg mt-3 me-2" id="updateCaseBtn" type="button"><i class="fa-solid fa-floppy-disk me-2"></i>Atualizar Denúncia</button>
+    <button class="btn btn-primary btn-lg mt-3" id="submitCaseBtn" type="button"><i class="fa-solid fa-paper-plane me-2"></i>Submeter Caso</button>
   </div>
+  <button id="nextStep" class="btn btn-outline-primary" type="button">Próximo <i class="fa-solid fa-arrow-right ms-2"></i></button>
+</div>
 </div>
 
           </div>
@@ -946,6 +1008,7 @@ document.getElementById('thirdPartySelect').addEventListener('change', function(
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+
 document.querySelector(".btn-primary").addEventListener("click", function() {
   
   // Exemplo: verificar se há terceiros pendentes
@@ -1022,5 +1085,347 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
     <script src="../assets/js/theme-customizer/customizer.js"></script>
     <!-- login js-->
     <!-- Plugin used-->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const provinceSelect = document.getElementById('provinceSelect');
+        const reportNumber = document.getElementById('reportNumber');
+        const districtName = document.getElementById('districtName');
+        const reportDate = document.getElementById('reportDate');
+        const timeDate = document.getElementById('timeDate');
+        const reporterName = document.getElementById('reporterName');
+        const reporterContact = document.getElementById('reporterContact');
+        const reportDescription = document.getElementById('reportDescription');
+        const statusSelect = document.getElementById('statusSelect');
+        const formSteps = Array.from(document.querySelectorAll('.form-step'));
+        const stepperWrapper = document.querySelector('.stepper-wrapper');
+        const prevStepBtn = document.getElementById('prevStep');
+        const nextStepBtn = document.getElementById('nextStep');
+        const updateCaseBtn = document.getElementById('updateCaseBtn');
+        const submitCaseBtn = document.getElementById('submitCaseBtn');
+        let currentStepIndex = 0;
+        let currentDistrictId = null;
+
+        // const provincesToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzkxMTg2NywianRpIjoiNDAwOWJiMTMtOGQxOS00OGY3LWI2ZmItNzIxYjFjYTkzYjk2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMzkxMTg2NywiZXhwIjoxNzYzMzkxNTQ2N30.DWjBP2eF-NkN5nywHH5kXk2O3NrcVZ2XA9nsz24MjYM';
+        // const reportToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2NTc0MjMyMiwianRpIjoiYWNiOTI2MjQtYjE0OS00NzJlLWEzZjEtYTEwNmQ4NWUyZTAzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjU3NDIzMjIsImV4cCI6MTc2NTc0NTkyMn0.AGhkBWNQVEY4G-u36jaTP1zerG-X9wU6ROk830FEgb8';
+        const token = localStorage.getItem('auth_token');
+        if (!token) { Swal.fire('Erro', 'Faça login primeiro.', 'error'); return; }
+        
+        const reportId = {{ $id ?? 'null' }};
+
+
+      if (token) {
+        $.ajax({
+            url: 'http://127.0.0.1:9800/api/reports/priorities',
+            type: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            success: function(response) {
+                const prioritySelect = $('#prioritySelect');
+                prioritySelect.empty().append('<option selected disabled>Selecione a urgência</option>');
+                if (response.data) {
+                    response.data.forEach(function(priority) {
+                        prioritySelect.append(new Option(priority.name, priority.id));
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Erro ao buscar prioridades:', error);
+                $('#prioritySelect').empty().append('<option selected disabled>Erro ao carregar</option>');
+            }
+        });
+
+        // Fetch and populate statuses
+        $.ajax({
+            url: 'http://127.0.0.1:9800/api/reports/statuses',
+            type: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            success: function(response) {
+                const statusSelect = $('#statusSelect');
+                statusSelect.empty().append('<option selected disabled>Selecione a situação</option>');
+                if (response.data) {
+                    response.data.forEach(function(status) {
+                        statusSelect.append(new Option(status.name, status.id));
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Erro ao buscar situações:', error);
+                $('#statusSelect').empty().append('<option selected disabled>Erro ao carregar</option>');
+            }
+        });
+    } else {
+        console.error('Token de autenticação não encontrado.');
+        $('#prioritySelect').empty().append('<option selected disabled>Não autorizado</option>');
+        $('#statusSelect').empty().append('<option selected disabled>Não autorizado</option>');
+    }
+
+
+
+        // Carrega províncias e, em seguida, preenche o formulário com a denúncia
+        fetch('http://127.0.0.1:9800/api/provinces', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 200 && data.data.provinces) {
+                const provinces = data.data.provinces;
+                provinces.forEach(province => {
+                    const option = document.createElement('option');
+                    option.value = province.id;
+                    option.textContent = province.name;
+                    provinceSelect.appendChild(option);
+                });
+                populateReport();
+            } else {
+                console.error('Erro ao obter as províncias:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Erro na requisição das províncias:', error);
+        });
+
+        function buildStepper() {
+          stepperWrapper.innerHTML = '';
+          formSteps.forEach((step, index) => {
+            const item = document.createElement('div');
+            item.className = 'stepper-item';
+            item.dataset.index = index;
+            const num = document.createElement('span');
+            num.className = 'stepper-number';
+            num.textContent = index + 1;
+            const title = document.createElement('span');
+            title.textContent = step.dataset.stepTitle || `Etapa ${index + 1}`;
+            item.appendChild(num);
+            item.appendChild(title);
+            stepperWrapper.appendChild(item);
+            item.addEventListener('click', () => showStep(index));
+          });
+        }
+
+        function showStep(index) {
+          if (index < 0 || index >= formSteps.length) return;
+          currentStepIndex = index;
+
+          formSteps.forEach((step, idx) => {
+            step.style.display = idx === index ? 'block' : 'none';
+          });
+
+          Array.from(stepperWrapper.children).forEach((item, idx) => {
+            item.classList.toggle('active', idx === index);
+          });
+
+          prevStepBtn.disabled = index === 0;
+          nextStepBtn.disabled = index === formSteps.length - 1;
+          const isLast = index === formSteps.length - 1;
+          updateCaseBtn.disabled = !isLast;
+          submitCaseBtn.disabled = !isLast;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        prevStepBtn.addEventListener('click', () => showStep(currentStepIndex - 1));
+        nextStepBtn.addEventListener('click', () => showStep(currentStepIndex + 1));
+
+        buildStepper();
+        showStep(0);
+        reportNumber.value = reportId;
+
+        // BI File Upload and Check ID Multi API
+        const biFront = document.getElementById('biFront');
+        const biBack = document.getElementById('biBack');
+        const biCheckResult = document.getElementById('biCheckResult');
+        const biCheckMessage = document.getElementById('biCheckMessage');
+        const victimDocumentNumber = document.getElementById('victimDocumentNumber');
+        let biFrontFile = null;
+        let biBackFile = null;
+
+        function checkBiFiles() {
+          if (biFrontFile && biBackFile) {
+            checkIdMulti(biFrontFile, biBackFile);
+          }
+        }
+
+        biFront.addEventListener('change', function(e) {
+          biFrontFile = e.target.files[0];
+          checkBiFiles();
+        });
+
+        biBack.addEventListener('change', function(e) {
+          biBackFile = e.target.files[0];
+          checkBiFiles();
+        });
+
+        function checkIdMulti(file1, file2) {
+          const formData = new FormData();
+          formData.append('file1', file1);
+          formData.append('file2', file2);
+
+          biCheckResult.style.display = 'block';
+          biCheckMessage.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Verificando documentos...';
+
+          fetch('http://127.0.0.1:4082/api/check_id_multi', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 200 || data.status === 201) {
+              biCheckResult.className = 'col-12 alert alert-success';
+              biCheckMessage.innerHTML = '<i class="fa-solid fa-check-circle me-2"></i>Documentos verificados com sucesso!';
+              if (data.data && data.data.document_number) {
+                victimDocumentNumber.value = data.data.document_number;
+              }
+            } else {
+              biCheckResult.className = 'col-12 alert alert-warning';
+              biCheckMessage.innerHTML = `<i class="fa-solid fa-exclamation-triangle me-2"></i>${data.message || 'Erro ao verificar documentos'}`;
+            }
+          })
+          .catch(error => {
+            console.error('Erro ao verificar BI:', error);
+            biCheckResult.className = 'col-12 alert alert-danger';
+            biCheckMessage.innerHTML = '<i class="fa-solid fa-times-circle me-2"></i>Erro ao verificar documentos. Tente novamente.';
+          });
+        }
+
+        // Form Submission Handler
+        submitCaseBtn.addEventListener('click', function() {
+          submitForm();
+        });
+
+        updateCaseBtn.addEventListener('click', function() {
+          submitForm(false);
+        });
+
+        function submitForm(isFinalSubmission = true) {
+          // Collect form data
+          const formData = {
+            title: reportNumber.value || 'Denúncia',
+            district_id: currentDistrictId ? String(currentDistrictId) : "50",
+            report_type_id: "1",
+            status_id: getStatusId(statusSelect.value),
+            reporter_name: reporterName.value || '',
+            description: reportDescription.value || ''
+          };
+
+          // Show loading
+          Swal.fire({
+            title: isFinalSubmission ? 'Submetendo caso...' : 'Atualizando caso...',
+            text: 'Por favor, aguarde...',
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading();
+            }
+          });
+
+          fetch(`http://127.0.0.1:9800/api/reports/${reportId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(formData)
+          })
+          .then(response => response.json())
+          .then(data => {
+            Swal.close();
+            if (data.status === 200 || data.status === 201) {
+              Swal.fire({
+                icon: 'success',
+                title: isFinalSubmission ? 'Caso Submetido!' : 'Caso Atualizado!',
+                text: data.message || (isFinalSubmission ? 'O caso foi submetido com sucesso.' : 'O caso foi atualizado com sucesso.'),
+                confirmButtonText: 'OK'
+              }).then(() => {
+                // Optionally redirect or reload
+                // window.location.reload();
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: data.message || 'Ocorreu um erro ao processar a solicitação.',
+                confirmButtonText: 'OK'
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Erro ao submeter:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Erro',
+              text: 'Erro de conexão. Verifique sua internet e tente novamente.',
+              confirmButtonText: 'OK'
+            });
+          });
+        }
+
+        function getStatusId(statusName) {
+          const statusMap = {
+            'Pendente': '1',
+            'Em Investigação': '2',
+            'Concluída': '3',
+            'Encaminhada': '4'
+          };
+          return statusMap[statusName] || '1';
+        }
+
+
+        function populateReport() {
+          fetch(`http://127.0.0.1:9800/api/reports/${reportId}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(response => response.json())
+          .then(result => {
+            if (result.status !== 200 || !result.data) {
+              console.error('Erro ao obter a denúncia:', result.message);
+              return;
+            }
+
+            const report = result.data;
+            const date = report.creation_date ? new Date(report.creation_date) : null;
+            if (date && !Number.isNaN(date.getTime())) {
+              reportDate.value = date.toISOString().split('T')[0];
+              timeDate.value = date.toISOString().split('T')[1].split('.')[0];
+            }
+
+            reporterName.value = report.reporter?.full_name ?? '';
+            reporterContact.value = report.contact ?? '';
+            reportDescription.value = report.description ?? '';
+            districtName.value = report.district?.name ?? '';
+            
+            // Store district_id for form submission
+            if (report.district?.id) {
+              currentDistrictId = report.district.id;
+            }
+
+            if (report.district?.province_id) {
+              const provinceOption = Array.from(provinceSelect.options).find(opt => Number(opt.value) === report.district.province_id);
+              if (provinceOption) {
+                provinceSelect.value = provinceOption.value;
+              }
+            }
+
+            if (report.status?.name) {
+              const statusOption = Array.from(statusSelect.options).find(opt => opt.text.toLowerCase() === report.status.name.toLowerCase());
+              if (statusOption) {
+                statusSelect.value = statusOption.text;
+              }
+            }
+          })
+          .catch(error => {
+            console.error('Erro na requisição da denúncia:', error);
+          });
+        }
+    });
+    </script>
   </body>
 </html>

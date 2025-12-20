@@ -322,7 +322,7 @@ form.addEventListener('submit', function(e) {
   e.preventDefault();
   if(form.checkValidity()) {
 
-    alert("test")
+    // alert("test")
     const formData = new FormData(createUserForm);
         const selectedRoles = $(rolesSelect).val();
         // const authToken = localStorage.getItem('auth_token');

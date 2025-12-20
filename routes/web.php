@@ -68,9 +68,9 @@ Route::get('/file-manager1', function () {
     return view('file-manager1');
 })->name('file-manager1');
 
- Route::get('/formDenuncia', function () {
-        return view('formDenuncia');
-    });
+ Route::get('/formDenuncia/{id}', function ($id) {
+        return view('formDenuncia', ['id' => $id]);
+    })->name('formDenuncia.show');
 
     Route::get('/formDenuncia1', function () {
     return view('formDenuncia1');
