@@ -106,7 +106,7 @@
   <div class="menu-options" id="menuOptions">
     <button onclick="verHistorico()">📜 Ver histórico de denúncia</button>
     <button onclick="verMaisInformacoes()">ℹ️ Ver mais informações</button>
-    <button onclick="verApoio()">💙 Apoiar</button>
+    <button onclick="verApoio()">💙 Apoiar</button> 
   </div>
 
   <div class="conteudo">
