@@ -444,8 +444,11 @@
   }
 
   function createCard(report) {
-    const priority = report.priority ? report.priority.toUpperCase() : 'NORMAL';
-    const priorityClass = priority === 'URGENTE' ? 'text-danger' : '';
+    const priorityName = report.priority
+      ? (typeof report.priority === 'string' ? report.priority : (report.priority.name || ''))
+      : '';
+    const priority = priorityName ? priorityName.toUpperCase() : 'NORMAL';
+    const priorityClass = (priority === 'URGENTE' || priority === 'ALTA') ? 'text-danger' : '';
     const cardLink = `{{ route('formDenuncia.show', ['id' => '__ID__']) }}`.replace('__ID__', report.id);
 
     return `

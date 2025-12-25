@@ -499,7 +499,9 @@
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-exclamation-triangle"></i></span>
         <select id="prioritySelect" class="form-select">
-          <option selected disabled>A carregar...</option>
+          <option>Alta</option>
+          <option>Média</option>
+          <option>Baixa</option>
         </select>
       </div>
     </div>
@@ -508,7 +510,10 @@
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-info-circle"></i></span>
         <select id="statusSelect" class="form-select">
-          <option selected disabled>A carregar...</option>
+          <option>Pendente</option>
+          <option>Em Investigação</option>
+          <option>Concluída</option>
+          <option>Encaminhada</option>
         </select>
       </div>
     </div>
@@ -530,14 +535,14 @@
       <label class="form-label">Nome Completo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-        <input type="text" class="form-control" placeholder="Nome da criança">
+        <input id="victimName" type="text" class="form-control" placeholder="Nome da criança">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Data de Nascimento</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-        <input type="date" class="form-control">
+        <input id="victimBirthDate" type="date" class="form-control">
       </div>
     </div>
     <div class="col-md-6">
@@ -555,7 +560,7 @@
       <label class="form-label">Endereço Completo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
-        <input type="text" class="form-control" placeholder="Bairro, Rua, Nº, Cidade">
+        <input id="victimAddress" type="text" class="form-control" placeholder="Bairro, Rua, Nº, Cidade">
       </div>
     </div>
     <div class="col-md-6">
@@ -617,7 +622,7 @@
     </div>
     <div class="col-md-12">
       <label class="form-label">Descrição da Criança / Observações Importantes</label>
-      <textarea class="form-control" rows="3" placeholder="Características físicas, comportamento, traços especiais..."></textarea>
+      <textarea class="form-control" id="important_observations" rows="3" placeholder="Características físicas, comportamento, traços especiais..."></textarea>
     </div>
     <div class="col-md-6">
       <label class="form-label">Escola / Instituição</label>
@@ -665,14 +670,14 @@
       <label class="form-label">Nome Completo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-user-secret"></i></span>
-        <input type="text" class="form-control" placeholder="Nome do agressor">
+        <input id="aggressorName" type="text" class="form-control" placeholder="Nome do agressor">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Data de Nascimento</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-        <input type="date" class="form-control">
+        <input id="aggressorBirthDate" type="date" class="form-control">
       </div>
     </div>
     <div class="col-md-6">
@@ -703,7 +708,7 @@
       <label class="form-label">Local de Residência</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
-        <input type="text" class="form-control" placeholder="Bairro, Rua, Nº">
+        <input id="aggressorAddress" type="text" class="form-control" placeholder="Bairro, Rua, Nº">
       </div>
     </div>
     <div class="col-md-6">
@@ -751,14 +756,14 @@
       <label class="form-label">Nome Completo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-        <input type="text" class="form-control" placeholder="Nome completo da testemunha">
+        <input id="witnessName" type="text" class="form-control" placeholder="Nome completo da testemunha">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Data de Nascimento</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-        <input type="date" class="form-control">
+        <input id="witnessBirthDate" type="date" class="form-control">
       </div>
     </div>
     <div class="col-md-6">
@@ -805,11 +810,11 @@
     </div>
     <div class="col-12">
       <label class="form-label">Relato Detalhado</label>
-      <textarea class="form-control" rows="4" placeholder="Escreva o depoimento ou informações fornecidas pela testemunha..."></textarea>
+      <textarea id="witnessDetail" class="form-control" rows="4" placeholder="Escreva o depoimento ou informações fornecidas pela testemunha..."></textarea>
     </div>
     <div class="col-12">
       <label class="form-label">Observações Adicionais</label>
-      <textarea class="form-control" rows="3" placeholder="Informações complementares, notas ou recomendações do entrevistador..."></textarea>
+      <textarea id="witnessNotes" class="form-control" rows="3" placeholder="Informações complementares, notas ou recomendações do entrevistador..."></textarea>
     </div>
   </div>
 </div>
@@ -950,25 +955,25 @@ document.getElementById('thirdPartySelect').addEventListener('change', function(
   <div class="row g-3">
     <div class="col-12">
       <label class="form-label">Resumo Completo do Caso</label>
-      <textarea class="form-control" rows="6" readonly placeholder="Este campo apresenta automaticamente todas as informações registradas: dados da vítima, agressor, testemunhas, pareceres de terceiros e demais observações."></textarea>
+      <textarea class="form-control" id="complete_summary" rows="6" readonly placeholder="Este campo apresenta automaticamente todas as informações registradas: dados da vítima, agressor, testemunhas, pareceres de terceiros e demais observações."></textarea>
     </div>
     <div class="col-md-6">
       <label class="form-label">Data de Última Atualização</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-calendar-day"></i></span>
-        <input type="date" class="form-control" readonly>
+        <input type="date" id="last_update_date" class="form-control" readonly>
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Último Responsável</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-user-check"></i></span>
-        <input type="text" class="form-control" readonly placeholder="Nome do operador ou parceiro responsável pela última atualização">
+        <input type="text" id="last_update_user" class="form-control" readonly placeholder="Nome do operador ou parceiro responsável pela última atualização">
       </div>
     </div>
     <div class="col-12">
       <label class="form-label">Observações Consolidadas</label>
-      <textarea class="form-control" rows="3" readonly placeholder="Todas as observações consolidadas, inclusive comentários de terceiros e notas internas, aparecem aqui."></textarea>
+      <textarea class="form-control" id="consolidated_observations" rows="3" readonly placeholder="Todas as observações consolidadas, inclusive comentários de terceiros e notas internas, aparecem aqui."></textarea>
     </div>
   </div>
 </div>
@@ -1008,7 +1013,6 @@ document.getElementById('thirdPartySelect').addEventListener('change', function(
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-
 document.querySelector(".btn-primary").addEventListener("click", function() {
   
   // Exemplo: verificar se há terceiros pendentes
@@ -1096,6 +1100,22 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
         const reporterContact = document.getElementById('reporterContact');
         const reportDescription = document.getElementById('reportDescription');
         const statusSelect = document.getElementById('statusSelect');
+        const prioritySelect = document.getElementById('prioritySelect');
+        const victimName = document.getElementById('victimName');
+        const victimBirthDate = document.getElementById('victimBirthDate');
+        const victimAddress = document.getElementById('victimAddress');
+        const witnessName = document.getElementById('witnessName');
+        const witnessBirthDate = document.getElementById('witnessBirthDate');
+        const witnessDetail = document.getElementById('witnessDetail');
+        const witnessNotes = document.getElementById('witnessNotes');
+        const aggressorName = document.getElementById('aggressorName');
+        const aggressorBirthDate = document.getElementById('aggressorBirthDate');
+        const lastUpdateDate = document.getElementById('last_update_date');
+        const lastUpdateUser = document.getElementById('last_update_user');
+        const consolidatedObservations = document.getElementById('consolidated_observations');
+        const completeSummary = document.getElementById('complete_summary');
+        const important_observations = document.getElementById('important_observations');
+        const aggressorAddress = document.getElementById('aggressorAddress');
         const formSteps = Array.from(document.querySelectorAll('.form-step'));
         const stepperWrapper = document.querySelector('.stepper-wrapper');
         const prevStepBtn = document.getElementById('prevStep');
@@ -1111,60 +1131,6 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
         if (!token) { Swal.fire('Erro', 'Faça login primeiro.', 'error'); return; }
         
         const reportId = {{ $id ?? 'null' }};
-
-
-      if (token) {
-        $.ajax({
-            url: 'http://127.0.0.1:9800/api/reports/priorities',
-            type: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            success: function(response) {
-                const prioritySelect = $('#prioritySelect');
-                prioritySelect.empty().append('<option selected disabled>Selecione a urgência</option>');
-                if (response.data) {
-                    response.data.forEach(function(priority) {
-                        prioritySelect.append(new Option(priority.name, priority.id));
-                    });
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Erro ao buscar prioridades:', error);
-                $('#prioritySelect').empty().append('<option selected disabled>Erro ao carregar</option>');
-            }
-        });
-
-        // Fetch and populate statuses
-        $.ajax({
-            url: 'http://127.0.0.1:9800/api/reports/statuses',
-            type: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            success: function(response) {
-                const statusSelect = $('#statusSelect');
-                statusSelect.empty().append('<option selected disabled>Selecione a situação</option>');
-                if (response.data) {
-                    response.data.forEach(function(status) {
-                        statusSelect.append(new Option(status.name, status.id));
-                    });
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Erro ao buscar situações:', error);
-                $('#statusSelect').empty().append('<option selected disabled>Erro ao carregar</option>');
-            }
-        });
-    } else {
-        console.error('Token de autenticação não encontrado.');
-        $('#prioritySelect').empty().append('<option selected disabled>Não autorizado</option>');
-        $('#statusSelect').empty().append('<option selected disabled>Não autorizado</option>');
-    }
-
-
 
         // Carrega províncias e, em seguida, preenche o formulário com a denúncia
         fetch('http://127.0.0.1:9800/api/provinces', {
@@ -1307,11 +1273,23 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
           // Collect form data
           const formData = {
             title: reportNumber.value || 'Denúncia',
-            district_id: currentDistrictId ? String(currentDistrictId) : "50",
-            report_type_id: "1",
+            description: reportDescription.value || '',
+            district_id: currentDistrictId ? Number(currentDistrictId) : 50,
+            report_type_id: 1,
+            // last_update_date: lastUpdateDate.value || '',
+            // last_update_user: lastUpdateUser.value || '',
+            consolidated_observations: consolidatedObservations.value || '',
+            summary: completeSummary.value || '',
             status_id: getStatusId(statusSelect.value),
+            detailed_report: witnessNotes.value || '',
+            aditional_details: witnessDetail.value || '',
+            important_observation: important_observations.value || '',
+            priority_id: getPriorityId(prioritySelect.value),
             reporter_name: reporterName.value || '',
-            description: reportDescription.value || ''
+            witness: buildPersonPayload(witnessName, witnessBirthDate, witnessDetail),
+            affected_person: buildPersonPayload(victimName, victimBirthDate, victimAddress),
+            caseworker: buildPersonPayload(null, null, null, { defaultName: 'Caseworker' }),
+            aggressor: buildPersonPayload(aggressorName, aggressorBirthDate, aggressorAddress)
           };
 
           // Show loading
@@ -1365,6 +1343,18 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
           });
         }
 
+        function buildPersonPayload(nameInput, birthInput, addressInput, options = {}) {
+          const defaultName = options.defaultName || '';
+          const person = {
+            full_name: nameInput ? nameInput.value : defaultName,
+            birth_date: birthInput ? birthInput.value : null,
+            address: addressInput ? addressInput.value : null,
+            mother_name: null,
+            father_name: null
+          };
+          return person;
+        }
+
         function getStatusId(statusName) {
           const statusMap = {
             'Pendente': '1',
@@ -1373,6 +1363,15 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
             'Encaminhada': '4'
           };
           return statusMap[statusName] || '1';
+        }
+
+        function getPriorityId(priorityName) {
+          const map = {
+            'Alta': 1,
+            'Média': 2,
+            'Baixa': 3
+          };
+          return map[priorityName] || 2;
         }
 
 
@@ -1391,10 +1390,15 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
             }
 
             const report = result.data;
+            
+            // Dados da Denúncia (Step 1)
+            reportNumber.value = report.title || report.id || '';
+            
             const date = report.creation_date ? new Date(report.creation_date) : null;
             if (date && !Number.isNaN(date.getTime())) {
               reportDate.value = date.toISOString().split('T')[0];
-              timeDate.value = date.toISOString().split('T')[1].split('.')[0];
+              const timeStr = date.toISOString().split('T')[1];
+              timeDate.value = timeStr ? timeStr.split('.')[0].substring(0, 5) : '';
             }
 
             reporterName.value = report.reporter?.full_name ?? '';
@@ -1414,11 +1418,51 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
               }
             }
 
+            // Priority
+            if (report.priority?.name) {
+              const priorityOption = Array.from(prioritySelect.options).find(opt => opt.text.toLowerCase() === report.priority.name.toLowerCase());
+              if (priorityOption) {
+                prioritySelect.value = priorityOption.text;
+              }
+            }
+
+            // Status
             if (report.status?.name) {
               const statusOption = Array.from(statusSelect.options).find(opt => opt.text.toLowerCase() === report.status.name.toLowerCase());
               if (statusOption) {
                 statusSelect.value = statusOption.text;
               }
+            }
+
+            // Dados da Vítima (affected_person) - Step 2
+            if (report.affected_person) {
+              if (victimName) victimName.value = report.affected_person.full_name ?? '';
+              if (victimBirthDate && report.affected_person.birth_date) {
+                // Handle date format - could be "1996-04-18" or ISO string
+                const birthDate = report.affected_person.birth_date.split('T')[0];
+                victimBirthDate.value = birthDate;
+              }
+              if (victimAddress) victimAddress.value = report.affected_person.address ?? '';
+            }
+
+            // Dados do Agressor - Step 3
+            if (report.aggressor) {
+              if (aggressorName) aggressorName.value = report.aggressor.full_name ?? '';
+              if (aggressorBirthDate && report.aggressor.birth_date) {
+                const birthDate = report.aggressor.birth_date.split('T')[0];
+                aggressorBirthDate.value = birthDate;
+              }
+              if (aggressorAddress) aggressorAddress.value = report.aggressor.address ?? '';
+            }
+
+            // Dados da Testemunha (witness) - Step 4
+            if (report.witness) {
+              if (witnessName) witnessName.value = report.witness.full_name ?? '';
+              if (witnessBirthDate && report.witness.birth_date) {
+                const birthDate = report.witness.birth_date.split('T')[0];
+                witnessBirthDate.value = birthDate;
+              }
+              if (witnessDetail) witnessDetail.value = report.witness.address ?? '';
             }
           })
           .catch(error => {
