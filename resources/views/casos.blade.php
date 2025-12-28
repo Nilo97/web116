@@ -444,9 +444,17 @@
   }
 
   function createCard(report) {
-    const priority = report.priority ? report.priority.toUpperCase() : 'NORMAL';
-    const priorityClass = priority === 'URGENTE' ? 'text-danger' : '';
-    const cardLink = `{{ route('formDenuncia.show', ['id' => '__ID__']) }}`.replace('__ID__', report.id);
+    // Handle priority - can be string, object with name, or null
+    let priorityText = 'NORMAL';
+    if (report.priority) {
+      if (typeof report.priority === 'string') {
+        priorityText = report.priority.toUpperCase();
+      } else if (report.priority.name) {
+        priorityText = report.priority.name.toUpperCase();
+      }
+    }
+    const priorityClass = priorityText.includes('URGENTE') || priorityText.includes('CRÍTICA') || priorityText.includes('ALTA') ? 'text-danger' : '';
+    const cardLink = `{{ route('formDenuncia.show', ['id' => '__ID__']) }}`.replace('__ID__', report.id || '');
 
     return `
       <div class="col-xxl-3 col-md-6">
@@ -466,7 +474,7 @@
               <div class="col-12"><strong>Código:</strong> ${generateCode(report.id)}</div>
               <div class="col-12"><strong>Data:</strong> ${formatDate(report.creation_date)}</div>
               <div class="col-12"><strong>Distrito:</strong> ${report.district?.name || 'N/D'}</div>
-              <div class="col-12"><strong>Prioridade:</strong> <span class="${priorityClass}">${priority}</span></div>
+              <div class="col-12"><strong>Prioridade:</strong> <span class="${priorityClass}">${priorityText}</span></div>
             </div>
             <div class="customers mb-2">
               <ul>
@@ -549,22 +557,55 @@
     fetch(url + '?' + params, {
       headers: { 'Authorization': 'Bearer ' + token }
     })
-    .then(r => r.json())
+    .then(r => {
+      if (!r.ok) {
+        return r.json().then(err => {
+          throw new Error(err.message || `Erro HTTP: ${r.status}`);
+        });
+      }
+      return r.json();
+    })
     .then(res => {
-      if (res.status !== 200) throw new Error(res.message || 'Erro');
+      if (res.status !== 200) {
+        throw new Error(res.message || 'Erro ao buscar denúncias');
+      }
+      
       const data = res.data;
-      const reports = data.reports || data;
+      if (!data) {
+        throw new Error('Resposta da API inválida');
+      }
+      
+      const reports = data.reports || (Array.isArray(data) ? data : []);
+      
+      if (!Array.isArray(reports)) {
+        throw new Error('Formato de dados inválido');
+      }
 
       container.innerHTML = reports.length ? '' : '<div class="col-12 text-center py-5 text-muted h5">Nenhuma denúncia encontrada.</div>';
-      reports.forEach(r => container.insertAdjacentHTML('beforeend', createCard(r)));
+      
+      reports.forEach(r => {
+        try {
+          container.insertAdjacentHTML('beforeend', createCard(r));
+        } catch (cardError) {
+          console.error('Erro ao criar card:', cardError, r);
+        }
+      });
 
       totalPages = data.pages || 1;
       currentPage = data.current_page || currentPage;
       renderPagination();
     })
     .catch(err => {
-      container.innerHTML = '<div class="col-12 text-center py-5 text-danger">Erro ao carregar denúncias.</div>';
-      console.error(err);
+      console.error('Erro ao buscar denúncias:', err);
+      const errorMessage = err.message || 'Erro desconhecido ao carregar denúncias.';
+      container.innerHTML = `
+        <div class="col-12 text-center py-5">
+          <div class="alert alert-danger">
+            <i class="fa fa-exclamation-triangle me-2"></i>
+            <strong>Erro:</strong> ${errorMessage}
+            <br><small class="text-muted">Por favor, tente novamente ou contacte o suporte se o problema persistir.</small>
+          </div>
+        </div>`;
     });
   }
 

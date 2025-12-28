@@ -466,13 +466,13 @@
       <label class="form-label">Canal de Recepção</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-phone-volume"></i></span>
-        <select class="form-select js-example-basic-single">
-          <option>Telefone / Linha 116</option>
-          <option>Aplicativo Móvel</option>
-          <option>USSD</option>
-          <option>Email</option>
-          <option>Presencial</option>
-          <option>Outro</option>
+        <select class="form-select" id="submission_chanel">
+          <option value="1">Telefone / Linha 116</option>
+          <option value="2">Aplicativo Móvel</option>
+          <option value="3">USSD</option>
+          <option value="4">Email</option>
+          <option value="5">Presencial</option>
+          <option value="6">Outro</option>
         </select>
       </div>
     </div>
@@ -514,7 +514,7 @@
     </div>
     <div class="col-12">
       <label class="form-label">Observações / Informações Adicionais</label>
-      <textarea class="form-control" rows="3" placeholder="Notas relevantes sobre a denúncia, contexto ou instruções especiais..."></textarea>
+      <textarea class="form-control" rows="3" id="additionalObservations" placeholder="Notas relevantes sobre a denúncia, contexto ou instruções especiais..."></textarea>
     </div>
   </div>
 </div>
@@ -524,30 +524,31 @@
 <!-- Dados da Vítima -->
 <!-- Dados da Vítima -->
 <div class="form-section form-step" data-step="2" data-step-title="Dados da Vítima">
+  <input type="hidden" id="affected_person_id">
   <h5><i class="fa-solid fa-child me-2"></i>Dados da Vítima</h5>
   <div class="row g-3">
     <div class="col-md-6">
       <label class="form-label">Nome Completo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-        <input type="text" class="form-control" placeholder="Nome da criança">
+        <input type="text" id="afected_people_name"  class="form-control" placeholder="Nome da criança">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Data de Nascimento</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-        <input type="date" class="form-control">
+        <input type="date" id="afected_people_date_of_birth" class="form-control">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Sexo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-venus-mars"></i></span>
-        <select class="form-select">
-          <option>Masculino</option>
-          <option>Feminino</option>
-          <option>Outro</option>
+        <select class="form-select" id="afected_people_gender">
+          <option id="1">Masculino</option>
+          <option id="2">Feminino</option>
+          <!-- <option>Outro</option> -->
         </select>
       </div>
     </div>
@@ -555,14 +556,14 @@
       <label class="form-label">Endereço Completo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
-        <input type="text" class="form-control" placeholder="Bairro, Rua, Nº, Cidade">
+        <input type="text" id="afected_people_address" class="form-control" placeholder="Bairro, Rua, Nº, Cidade">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Contacto (Telefone/WhatsApp)</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-        <input type="tel" class="form-control" placeholder="+258 xxx xxx xxx">
+        <input type="tel" id="afected_people_phone_numeber" class="form-control" placeholder="+258 xxx xxx xxx">
       </div>
     </div>
     <div class="col-md-6">
@@ -598,10 +599,8 @@
       <label class="form-label">Estado de Saúde</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-heart-pulse"></i></span>
-        <select class="form-select">
-          <option>Saudável</option>
-          <option>Com Doença</option>
-          <option>Com Deficiência</option>
+        <select id="healthStatusSelect" class="form-select">
+          <option selected disabled>A carregar...</option>
         </select>
       </div>
     </div>
@@ -609,46 +608,45 @@
       <label class="form-label">Necessidades Especiais</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-wheelchair"></i></span>
-        <select class="form-select">
-          <option>Não</option>
-          <option>Sim</option>
+        <select class="form-select" id="afected_people_needs_special_assistance">
+          <option value="2">Não</option>
+          <option value="1">Sim</option>
         </select>
       </div>
     </div>
     <div class="col-md-12">
       <label class="form-label">Descrição da Criança / Observações Importantes</label>
-      <textarea class="form-control" rows="3" placeholder="Características físicas, comportamento, traços especiais..."></textarea>
+      <textarea class="form-control" id="young_people_observations" rows="3" placeholder="Características físicas, comportamento, traços especiais..."></textarea>
     </div>
     <div class="col-md-6">
       <label class="form-label">Escola / Instituição</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-school"></i></span>
-        <input type="text" class="form-control" placeholder="Nome da escola ou instituição">
+        <select id="institutionSelect" class="form-select">
+          <option selected disabled>A carregar...</option>
+        </select>
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Responsável Legal</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-user-tie"></i></span>
-        <input type="text" class="form-control" placeholder="Nome do responsável legal">
+        <input type="text" class="form-control" id="representative_name" placeholder="Nome do responsável legal">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Contacto do Responsável</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-        <input type="tel" class="form-control" placeholder="+258 xxx xxx xxx">
+        <input type="tel" id="representative_phone_number" class="form-control" placeholder="+258 xxx xxx xxx">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Parentesco com a Criança</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-link"></i></span>
-        <select class="form-select">
-          <option>Pai</option>
-          <option>Mãe</option>
-          <option>Avô/Avó</option>
-          <option>Outro</option>
+        <select id="kinshipSelect" class="form-select">
+          <option selected disabled>A carregar...</option>
         </select>
       </div>
     </div>
@@ -665,24 +663,23 @@
       <label class="form-label">Nome Completo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-user-secret"></i></span>
-        <input type="text" class="form-control" placeholder="Nome do agressor">
+        <input type="text" id="aggressor_name" class="form-control" placeholder="Nome do agressor">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Data de Nascimento</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-        <input type="date" class="form-control">
+        <input type="date" id="aggressor_birth_date" class="form-control">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Sexo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-venus-mars"></i></span>
-        <select class="form-select">
-          <option>Masculino</option>
-          <option>Feminino</option>
-          <option>Outro</option>
+        <select class="form-select" id="aggressor_gender">
+          <option value="1">Masculino</option>
+          <option value="2">Feminino</option>
         </select>
       </div>
     </div>
@@ -690,12 +687,8 @@
       <label class="form-label">Relação com a Vítima</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-link"></i></span>
-        <select class="form-select">
-          <option>Pai/Mãe</option>
-          <option>Parente</option>
-          <option>Professor</option>
-          <option>Vizinho</option>
-          <option>Outro</option>
+        <select class="form-select" id="relationWithVictimAgressor">
+          <option value"">(Seleccione a relação com a vitima)</option>
         </select>
       </div>
     </div>
@@ -703,38 +696,35 @@
       <label class="form-label">Local de Residência</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
-        <input type="text" class="form-control" placeholder="Bairro, Rua, Nº">
+        <input type="text" id="aggressor_address" class="form-control" placeholder="Bairro, Rua, Nº">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Contacto (Telefone/WhatsApp)</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-        <input type="tel" class="form-control" placeholder="+258 xxx xxx xxx">
+        <input type="tel" class="form-control" id="aggressor_phone_number" placeholder="+258 xxx xxx xxx">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Identidade / BI / Passaporte</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
-        <input type="text" class="form-control" placeholder="Número do documento">
+        <input type="text" class="form-control" id="aggressor_id_number" placeholder="Número do documento">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Antecedentes / Histórico</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-book"></i></span>
-        <select class="form-select">
-          <option>Nenhum</option>
-          <option>Violência prévia</option>
-          <option>Crimes contra menores</option>
-          <option>Outro</option>
+        <select class="form-select" multiple="true" id="aggressor_history">
+        
         </select>
       </div>
     </div>
     <div class="col-12">
       <label class="form-label">Observações Importantes</label>
-      <textarea class="form-control" rows="3" placeholder="Comportamento, hábitos, informações relevantes para a investigação..."></textarea>
+      <textarea class="form-control" rows="3" id="aggressor_important_observation" placeholder="Comportamento, hábitos, informações relevantes para a investigação..."></textarea>
     </div>
   </div>
 </div>
@@ -751,24 +741,24 @@
       <label class="form-label">Nome Completo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-        <input type="text" class="form-control" placeholder="Nome completo da testemunha">
+        <input type="text" id="reporter_name" class="form-control" placeholder="Nome completo da testemunha">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Data de Nascimento</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-        <input type="date" class="form-control">
+        <input type="date" id="reporter_birth_date" class="form-control">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Sexo</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-venus-mars"></i></span>
-        <select class="form-select">
-          <option>Masculino</option>
-          <option>Feminino</option>
-          <option>Outro</option>
+        <select class="form-select" id="reporter_gender">
+          <option value="1">Masculino</option>
+          <option value="2">Feminino</option>
+
         </select>
       </div>
     </div>
@@ -776,19 +766,16 @@
       <label class="form-label">Contacto</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-        <input type="tel" class="form-control" placeholder="+258 xxx xxx xxx">
+        <input type="tel" id="reporter_phone_number" class="form-control" placeholder="+258 xxx xxx xxx">
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Relação com a Vítima</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-link"></i></span>
-        <select class="form-select">
-          <option>Parente</option>
-          <option>Amigo</option>
-          <option>Professor</option>
-          <option>Vizinho</option>
-          <option>Outro</option>
+        <select class="form-select" id="relationWithVictim">
+          <option value="">(Seleccione a relação com a vítima)</option>
+          
         </select>
       </div>
     </div>
@@ -796,20 +783,20 @@
       <label class="form-label">Disponibilidade para Depoimento</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-clock"></i></span>
-        <select class="form-select">
-          <option>Imediata</option>
-          <option>Em breve</option>
-          <option>Não disponível</option>
+        <select class="form-select" id="reporter_availability">
+          <option value="1">Imediata</option>
+          <option value="2">Em breve</option>
+          <option value="3">Não disponível</option>
         </select>
       </div>
     </div>
     <div class="col-12">
       <label class="form-label">Relato Detalhado</label>
-      <textarea class="form-control" rows="4" placeholder="Escreva o depoimento ou informações fornecidas pela testemunha..."></textarea>
+      <textarea class="form-control" id="detailed_report" rows="4" placeholder="Escreva o depoimento ou informações fornecidas pela testemunha..."></textarea>
     </div>
     <div class="col-12">
       <label class="form-label">Observações Adicionais</label>
-      <textarea class="form-control" rows="3" placeholder="Informações complementares, notas ou recomendações do entrevistador..."></textarea>
+      <textarea class="form-control" id="adition_notes" rows="3" placeholder="Informações complementares, notas ou recomendações do entrevistador..."></textarea>
     </div>
   </div>
 </div>
@@ -843,7 +830,9 @@
     </div>
     <div class="col-md-6">
       <label class="form-label">Distrito</label>
-      <input id="districtName" type="text" class="form-control" placeholder="Distrito" readonly>
+      <select id="districtSelect" class="form-select">
+        <option value="">Selecione o distrito</option>
+      </select>
     </div>
 
     <!-- Locais e Parecer do Terceiro -->
@@ -852,37 +841,30 @@
         <!-- Locais -->
         <div class="col-md-6" id="policeStationDiv" style="display:none;">
           <label class="form-label">Esquadras Próximas</label>
-          <select class="form-select">
-            <option>Esquadra Central</option>
-            <option>Esquadra Bairro A</option>
-            <option>Esquadra Bairro B</option>
+          <select id="policeSelect" class="form-select">
+            <option selected disabled>A carregar...</option>
           </select>
         </div>
 
         <div class="col-md-6" id="hospitalDiv" style="display:none;">
           <label class="form-label">Hospitais Próximos</label>
-          <select class="form-select">
-            <option>Hospital Central</option>
-            <option>Hospital Bairro A</option>
+          <select id="hospitalSelect" class="form-select">
+            <option selected disabled>A carregar...</option>
           </select>
         </div>
 
         <div class="col-md-6" id="courtDiv" style="display:none;">
           <label class="form-label">Tribunais Próximos</label>
-          <select class="form-select">
-            <option>Tribunal Central</option>
-            <option>Tribunal Bairro A</option>
+          <select id="tribunalSelect" class="form-select">
+            <option selected disabled>A carregar...</option>
           </select>
         </div>
 
         <!-- Parecer do Terceiro -->
         <div class="col-md-6">
           <label class="form-label">Parecer do Terceiro</label>
-          <select class="form-select">
-            <option value="">Selecione</option>
-            <option value="aprovado">Aprovado</option>
-            <option value="pendente">Pendente</option>
-            <option value="rejeitado">Rejeitado</option>
+          <select id="thirdPartyOpinionSelect" class="form-select">
+            <option selected disabled>A carregar...</option>
           </select>
         </div>
 
@@ -891,18 +873,18 @@
           <label class="form-label">Contato do Terceiro</label>
           <div class="input-group mb-2">
             <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-            <input type="tel" class="form-control" placeholder="+258 xxx xxx xxx">
+            <input type="tel" class="form-control" id="thirdPartyContact" placeholder="+258 xxx xxx xxx">
           </div>
           <div class="input-group">
             <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-            <input type="email" class="form-control" placeholder="email@dominio.com">
+            <input type="email" class="form-control" id="thirdPartyEmail" placeholder="email@dominio.com">
           </div>
         </div>
 
         <!-- Descrição -->
         <div class="col-12">
           <label class="form-label">Descrição / Observações do Terceiro</label>
-          <textarea class="form-control" rows="3" placeholder="Adicione o parecer detalhado do terceiro..."></textarea>
+          <textarea class="form-control" id='third_party_description' rows="3" placeholder="Adicione o parecer detalhado do terceiro..."></textarea>
         </div>
       </div>
     </div>
@@ -910,36 +892,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-document.getElementById('thirdPartySelect').addEventListener('change', function() {
-  const value = this.value;
-  const detailsDiv = document.getElementById('thirdPartyDetails');
-
-  // Ocultar todos os locais
-  document.getElementById('policeStationDiv').style.display = 'none';
-  document.getElementById('hospitalDiv').style.display = 'none';
-  document.getElementById('courtDiv').style.display = 'none';
-
-  if (value) {
-    detailsDiv.style.display = 'block';
-
-    // Mostrar o local correto
-    if(value === 'policia') document.getElementById('policeStationDiv').style.display = 'block';
-    if(value === 'hospital') document.getElementById('hospitalDiv').style.display = 'block';
-    if(value === 'tribunal') document.getElementById('courtDiv').style.display = 'block';
-
-    // SweetAlert informativa
-    Swal.fire({
-      icon: 'info',
-      title: 'Atenção!',
-      text: 'A denúncia só poderá ser finalizada após o preenchimento do parecer pelo terceiro indicado. Um e-mail ou SMS será enviado para o contato do terceiro.',
-      confirmButtonText: 'Entendido'
-    });
-  } else {
-    detailsDiv.style.display = 'none';
-  }
-});
-</script>
 
 
 
@@ -950,36 +902,41 @@ document.getElementById('thirdPartySelect').addEventListener('change', function(
   <div class="row g-3">
     <div class="col-12">
       <label class="form-label">Resumo Completo do Caso</label>
-      <textarea class="form-control" rows="6" readonly placeholder="Este campo apresenta automaticamente todas as informações registradas: dados da vítima, agressor, testemunhas, pareceres de terceiros e demais observações."></textarea>
+      <textarea class="form-control" rows="6" id="complete_sumary" readonly placeholder="Este campo apresenta automaticamente todas as informações registradas: dados da vítima, agressor, testemunhas, pareceres de terceiros e demais observações."></textarea>
     </div>
     <div class="col-md-6">
       <label class="form-label">Data de Última Atualização</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-calendar-day"></i></span>
-        <input type="date" class="form-control" readonly>
+        <input type="datetime" id="last_change" class="form-control" readonly>
       </div>
     </div>
     <div class="col-md-6">
       <label class="form-label">Último Responsável</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-user-check"></i></span>
-        <input type="text" class="form-control" readonly placeholder="Nome do operador ou parceiro responsável pela última atualização">
+        <input type="text" id="case_worker" class="form-control" readonly placeholder="Nome do operador ou parceiro responsável pela última atualização">
       </div>
     </div>
     <div class="col-12">
       <label class="form-label">Observações Consolidadas</label>
-      <textarea class="form-control" rows="3" readonly placeholder="Todas as observações consolidadas, inclusive comentários de terceiros e notas internas, aparecem aqui."></textarea>
+      <textarea class="form-control" id="consolidated_details" rows="3" readonly placeholder="Todas as observações consolidadas, inclusive comentários de terceiros e notas internas, aparecem aqui."></textarea>
     </div>
   </div>
 </div>
 
-<div class="d-flex justify-content-between align-items-center mt-4">
-  <button id="prevStep" class="btn btn-outline-primary" type="button"><i class="fa-solid fa-arrow-left me-2"></i>Anterior</button>
-  <div class="text-center flex-grow-1">
-    <button class="btn btn-primary btn-lg mt-3 me-2" id="updateCaseBtn" type="button"><i class="fa-solid fa-floppy-disk me-2"></i>Atualizar Denúncia</button>
-    <button class="btn btn-primary btn-lg mt-3" id="submitCaseBtn" type="button"><i class="fa-solid fa-paper-plane me-2"></i>Submeter Caso</button>
-  </div>
-  <button id="nextStep" class="btn btn-outline-primary" type="button">Próximo <i class="fa-solid fa-arrow-right ms-2"></i></button>
+<div class="d-flex justify-content-between align-items-center mt-5 mb-5">
+  <button id="prevStep" class="btn btn-outline-primary btn-lg" type="button">
+    <i class="fa-solid fa-arrow-left me-2"></i>Anterior
+  </button>
+
+
+  <button id="submitFinalBtn" class="btn btn-outline-primary btn-lg"  type="button" style="display:none;">
+      <i class="fa-solid fa-paper-plane me-2"></i>Submeter Caso Final
+    </button>
+  <button id="nextStep" class="btn btn-outline-primary btn-lg" type="button">
+    Próximo <i class="fa-solid fa-arrow-right ms-2"></i>
+  </button>
 </div>
 </div>
 
@@ -1009,46 +966,46 @@ document.getElementById('thirdPartySelect').addEventListener('change', function(
 
 <script>
 
-document.querySelector(".btn-primary").addEventListener("click", function() {
+// document.querySelector(".btn-primary").addEventListener("click", function() {
   
-  // Exemplo: verificar se há terceiros pendentes
-  const terceirosPendentes = true; // colocar a lógica real aqui
-  const terceiroNome = "Polícia";  // exemplo de terceiro pendente
-  const novoEstado = terceirosPendentes ? `À espera de confirmação do terceiro: ${terceiroNome}` : "Concluído";
+//   // Exemplo: verificar se há terceiros pendentes
+//   const terceirosPendentes = true; // colocar a lógica real aqui
+//   const terceiroNome = "Polícia";  // exemplo de terceiro pendente
+//   const novoEstado = terceirosPendentes ? `À espera de confirmação do terceiro: ${terceiroNome}` : "Concluído";
 
-  Swal.fire({
-    title: 'O que deseja fazer?',
-    text: "Escolha a ação para o caso:",
-    icon: 'question',
-    showDenyButton: true,
-    showCancelButton: true,
-    confirmButtonText: 'Atualizar apenas',
-    denyButtonText: `Mudar estado do caso`,
-    cancelButtonText: 'Finalizar caso',
-    reverseButtons: true
-  }).then((result) => {
+//   Swal.fire({
+//     title: 'O que deseja fazer?',
+//     text: "Escolha a ação para o caso:",
+//     icon: 'question',
+//     showDenyButton: true,
+//     showCancelButton: true,
+//     confirmButtonText: 'Atualizar apenas',
+//     denyButtonText: `Mudar estado do caso`,
+//     cancelButtonText: 'Finalizar caso',
+//     reverseButtons: true
+//   }).then((result) => {
     
-    if (result.isConfirmed) {
-      // Atualizar apenas
-      Swal.fire('Atualizado!', 'O caso foi atualizado. Pode continuar a editar quando desejar.', 'success');
-      // Aqui você chama a função de update sem alterar estado
+//     if (result.isConfirmed) {
+//       // Atualizar apenas
+//       Swal.fire('Atualizado!', 'O caso foi atualizado. Pode continuar a editar quando desejar.', 'success');
+//       // Aqui você chama a função de update sem alterar estado
 
-    } else if (result.isDenied) {
-      // Mudar estado
-      Swal.fire('Estado Alterado!', `O caso agora está em: ${novoEstado}`, 'info');
-      // Aqui você chama a função para mudar o estado
-    } else if (result.isDismissed) {
-      // Finalizar caso
-      if(terceirosPendentes){
-        Swal.fire('Atenção!', `Não é possível finalizar o caso. Aguardando parecer do terceiro: ${terceiroNome}.`, 'warning');
-      } else {
-        Swal.fire('Caso Finalizado!', 'O caso foi finalizado com sucesso.', 'success');
-        // Aqui você chama a função de finalizar o caso
-      }
-    }
+//     } else if (result.isDenied) {
+//       // Mudar estado
+//       Swal.fire('Estado Alterado!', `O caso agora está em: ${novoEstado}`, 'info');
+//       // Aqui você chama a função para mudar o estado
+//     } else if (result.isDismissed) {
+//       // Finalizar caso
+//       if(terceirosPendentes){
+//         Swal.fire('Atenção!', `Não é possível finalizar o caso. Aguardando parecer do terceiro: ${terceiroNome}.`, 'warning');
+//       } else {
+//         Swal.fire('Caso Finalizado!', 'O caso foi finalizado com sucesso.', 'success');
+//         // Aqui você chama a função de finalizar o caso
+//       }
+//     }
     
-  });
-});
+//   });
+// });
 </script>
 
     
@@ -1087,21 +1044,71 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
     <!-- Plugin used-->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const complete_sumary = document.getElementById('complete_sumary');
+        const last_change = document.getElementById('last_change');
+        const case_worker = document.getElementById('case_worker');
+        const consolidated_details = document.getElementById('consolidated_details');
+        
+      
+      
+      
+        const reporter_name = document.getElementById('reporter_name');
+        const reporter_birth_date = document.getElementById('reporter_birth_date');
+        const reporter_gender = document.getElementById('reporter_gender');
+        const reporter_phone_number = document.getElementById('reporter_phone_number');
+        
+        const relationWithVictim = document.getElementById('relationWithVictim');
+        const detailed_report = document.getElementById('detailed_report');
+        const adition_notes = document.getElementById('adition_notes');
+        const reporter_availability = document.getElementById('adition_notes');
+        const third_party_description = document.getElementById('third_party_description')
         const provinceSelect = document.getElementById('provinceSelect');
+        const aggressor_name = document.getElementById('aggressor_name');
+        const aggressor_birth_date = document.getElementById('aggressor_birth_date');
+        const aggressor_gender = document.getElementById('aggressor_gender');
+        const relationWithVictimAgressor = document.getElementById('relationWithVictimAgressor');
+        const aggressor_address = document.getElementById('aggressor_address');
+        const aggressor_phone_number = document.getElementById('aggressor_phone_number')
+        const aggressor_id_number = document.getElementById('aggressor_id_number');
+        const aggressor_history = document.getElementById('aggressor_history')
         const reportNumber = document.getElementById('reportNumber');
-        const districtName = document.getElementById('districtName');
+        const districtSelect = document.getElementById('districtSelect');
+        const additionalObservations = document.getElementById('additionalObservations');
+        const affected_people_name = document.getElementById('afected_people_name');
+        const affected_people_date_of_birth = document.getElementById('afected_people_date_of_birth');
+        const affected_people_gender = document.getElementById('afected_people_gender');
+        const affected_people_address = document.getElementById('afected_people_address');
+        const healthStatusSelect = document.getElementById('healthStatusSelect')
+        const affected_person_id = document.getElementById('affected_person_id')
+        const representative_phone_number = document.getElementById('representative_phone_number')
+        const representative_name = document.getElementById('representative_name')
+        const affected_people_phone_numeber = document.getElementById('afected_people_phone_numeber');
+        const affected_people_needs_special_assistance = document.getElementById('afected_people_needs_special_assistance');
+        const affected_people_special_assistance_description = document.getElementById('young_people_observations');
+        const institutionSelect = document.getElementById('institutionSelect');
         const reportDate = document.getElementById('reportDate');
+        // const reporter_phone_number = document.getElementById('reporterContact');
+        
+        const third_party_email = document.getElementById('thirdPartyEmail');
         const timeDate = document.getElementById('timeDate');
         const reporterName = document.getElementById('reporterName');
         const reporterContact = document.getElementById('reporterContact');
         const reportDescription = document.getElementById('reportDescription');
+        const kinshipSelect = document.getElementById('kinshipSelect');
         const statusSelect = document.getElementById('statusSelect');
+        const thirdPartySelect = document.getElementById('thirdPartySelect');
+        const afected_people_gender = document.getElementById('afected_people_gender');
+        // const reportDescription = document.getElementById('reportDescription');
+        const submission_chanel = document.getElementById('submission_chanel');
         const formSteps = Array.from(document.querySelectorAll('.form-step'));
         const stepperWrapper = document.querySelector('.stepper-wrapper');
         const prevStepBtn = document.getElementById('prevStep');
         const nextStepBtn = document.getElementById('nextStep');
         const updateCaseBtn = document.getElementById('updateCaseBtn');
         const submitCaseBtn = document.getElementById('submitCaseBtn');
+        const thirdPartyContact = document.getElementById('thirdPartyContact');
+        const thirdPartyEmail = document.getElementById('thirdPartyEmail');
+        const thirdPartyDescription = document.getElementById('thirdPartyDescription');
         let currentStepIndex = 0;
         let currentDistrictId = null;
 
@@ -1113,84 +1120,278 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
         const reportId = {{ $id ?? 'null' }};
 
 
-      if (token) {
-        $.ajax({
-            url: 'http://127.0.0.1:9800/api/reports/priorities',
-            type: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            success: function(response) {
-                const prioritySelect = $('#prioritySelect');
-                prioritySelect.empty().append('<option selected disabled>Selecione a urgência</option>');
-                if (response.data) {
-                    response.data.forEach(function(priority) {
-                        prioritySelect.append(new Option(priority.name, priority.id));
-                    });
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Erro ao buscar prioridades:', error);
-                $('#prioritySelect').empty().append('<option selected disabled>Erro ao carregar</option>');
-            }
-        });
+       // Load all form options from API
+       if (token) {
+         $.ajax({
+             url: 'http://127.0.0.1:9800/api/form-options',
+             type: 'GET',
+             headers: {
+                 'Authorization': `Bearer ${token}`,
+                 'Content-Type': 'application/json'
+             },
+             success: function(response) {
+                 if (response.status === 200 && response.data) {
+                     const data = response.data;
+                     
+                     // Populate Provinces
+                     const provinceSelect = $('#provinceSelect');
+                     provinceSelect.empty().append('<option value="">Selecione a província</option>');
+                     if (data.provinces) {
+                         data.provinces.forEach(function(province) {
+                             provinceSelect.append(new Option(province.name, province.id));
+                         });
+                     }
+                     
+                     // Populate Districts (will be filtered by province)
+                     window.allDistricts = data.districts || [];
+                     
+                     // Populate Priorities
+                     const prioritySelect = $('#prioritySelect');
+                     prioritySelect.empty().append('<option selected disabled>Selecione a urgência</option>');
+                     if (data.priorities) {
+                         data.priorities.forEach(function(priority) {
+                             prioritySelect.append(new Option(priority.name, priority.id));
+                         });
+                     }
 
-        // Fetch and populate statuses
-        $.ajax({
-            url: 'http://127.0.0.1:9800/api/reports/statuses',
-            type: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            success: function(response) {
-                const statusSelect = $('#statusSelect');
-                statusSelect.empty().append('<option selected disabled>Selecione a situação</option>');
-                if (response.data) {
-                    response.data.forEach(function(status) {
-                        statusSelect.append(new Option(status.name, status.id));
-                    });
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Erro ao buscar situações:', error);
-                $('#statusSelect').empty().append('<option selected disabled>Erro ao carregar</option>');
-            }
-        });
-    } else {
-        console.error('Token de autenticação não encontrado.');
-        $('#prioritySelect').empty().append('<option selected disabled>Não autorizado</option>');
-        $('#statusSelect').empty().append('<option selected disabled>Não autorizado</option>');
-    }
+                     const aggressor_historySelect = $('#aggressor_history');
+                     aggressor_historySelect.empty().append('<option selected disabled>Selecione os crimes</option>');
+                     if (data.Crimes) {
+                         data.Crimes.forEach(function(crime) {
+                          aggressor_historySelect.append(new Option(crime.name, crime.id));
+                         });
+                     }
+                     
+                     // Populate Statuses
+                     const statusSelect = $('#statusSelect');
+                     statusSelect.empty().append('<option selected disabled>Selecione a situação</option>');
+                     if (data.statuses) {
+                         data.statuses.forEach(function(status) {
+                             statusSelect.append(new Option(status.name, status.id));
+                         });
+                     }
+
+                     const thirdPartySelect = $('#thirdPartySelect');
+                     thirdPartySelect.empty().append('<option selected disabled>Selecione a Instituicão</optaion>');
+                     if (data.institutions) {
+                         data.institutions.forEach(function(status) {
+                          thirdPartySelect.append(new Option(status.name, status.id));
+                         });
+                     }
+                     
+                     // Populate Health Statuses
+                     const healthStatusSelect = $('#healthStatusSelect');
+                     healthStatusSelect.empty().append('<option selected disabled>Selecione o estado de saúde</option>');
+                     if (data.health_statuses) {
+                         data.health_statuses.forEach(function(healthStatus) {
+                             healthStatusSelect.append(new Option(healthStatus.name, healthStatus.id));
+                         });
+                     }
+                     
+                     // Populate Kinships
+                     const kinshipSelect = $('#kinshipSelect');
+                     kinshipSelect.empty().append('<option selected disabled>Selecione o parentesco</option>');
+                     if (data.kinships) {
+                         data.kinships.forEach(function(kinship) {
+                             kinshipSelect.append(new Option(kinship.name, kinship.id));
+                         });
+                     }
+                     const relationWithVictimAgressor = $('#relationWithVictimAgressor');
+                     relationWithVictimAgressor.empty().append('<option selected disabled>Selecione o parentesco</option>');
+                     if (data.kinships) {
+                         data.kinships.forEach(function(kinship) {
+                          relationWithVictimAgressor.append(new Option(kinship.name, kinship.id));
+                         });
+                     }
+                     
+                     // Populate Institutions
+                     const institutionSelect = $('#institutionSelect');
+                     institutionSelect.empty().append('<option selected disabled>Selecione a instituição</option>');
+                     if (data.institutions) {
+                         data.institutions.forEach(function(institution) {
+                             institutionSelect.append(new Option(institution.name, institution.id));
+                         });
+                     }
+                     const relationWithVictim = $('#relationWithVictim');
+                     relationWithVictim.empty().append('<option selected disabled>Selecione o parentesco</option>');
+                     if (data.kinships) {
+                         data.kinships.forEach(function(kinship) {
+                          relationWithVictim.append(new Option(kinship.name, kinship.id));
+                         });
+                     }
+                     // Store polices, hospitals and tribunals for filtering by district
+                     window.allPolices = data.polices || [];
+                     window.allHospitals = data.hospitals || [];
+                     window.allTribunals = data.tribunals || [];
+                     
+                     // Populate Third Party Opinion (using statuses)
+                     const thirdPartyOpinionSelect = $('#thirdPartyOpinionSelect');
+                     thirdPartyOpinionSelect.empty().append('<option selected disabled>Selecione o parecer</option>');
+                     if (data.statuses) {
+                         data.statuses.forEach(function(status) {
+                             thirdPartyOpinionSelect.append(new Option(status.name, status.id));
+                         });
+                     }
+                     
+                     // Store report types for later use
+                     window.reportTypes = data.report_types || [];
+                     
+                     // After loading all options, populate the form with report data
+                     populateReport();
+                 }
+             },
+             error: function(xhr, status, error) {
+                 console.error('Erro ao buscar opções do formulário:', error);
+                 $('#prioritySelect').empty().append('<option selected disabled>Erro ao carregar</option>');
+                 $('#statusSelect').empty().append('<option selected disabled>Erro ao carregar</option>');
+                 $('#healthStatusSelect').empty().append('<option selected disabled>Erro ao carregar</option>');
+                 $('#kinshipSelect').empty().append('<option selected disabled>Erro ao carregar</option>');
+                 $('#institutionSelect').empty().append('<option selected disabled>Erro ao carregar</option>');
+             }
+         });
+     } else {
+         console.error('Token de autenticação não encontrado.');
+         $('#prioritySelect').empty().append('<option selected disabled>Não autorizado</option>');
+         $('#statusSelect').empty().append('<option selected disabled>Não autorizado</option>');
+     }
+     
+     // Filter districts when province is selected
+     $('#provinceSelect').on('change', function() {
+         const selectedProvinceId = $(this).val();
+         const districtSelect = $('#districtSelect');
+         districtSelect.empty().append('<option value="">Selecione o distrito</option>');
+         
+         if (selectedProvinceId && window.allDistricts) {
+             const filteredDistricts = window.allDistricts.filter(function(district) {
+                 return district.province_id == selectedProvinceId;
+             });
+             
+             filteredDistricts.forEach(function(district) {
+                 districtSelect.append(new Option(district.name, district.id));
+             });
+         }
+     });
+     
+     // Update currentDistrictId when district is selected and filter third party options
+     $('#districtSelect').on('change', function() {
+         currentDistrictId = $(this).val() ? Number($(this).val()) : null;
+         // Update third party options if a third party type is already selected
+         const thirdPartyType = $('#thirdPartySelect').val();
+         if (thirdPartyType && currentDistrictId) {
+             updateThirdPartyOptions();
+         }
+     });
+     
+     // Function to update third party options based on selected district
+     function updateThirdPartyOptions() {
+         const selectedDistrictId = currentDistrictId;
+         const thirdPartyType = $('#thirdPartySelect').val();
+         
+         if (!selectedDistrictId) {
+             // Show message if district is not selected
+             if (thirdPartyType === '1') {
+                 $('#policeSelect').empty().append('<option disabled>Selecione primeiro o distrito</option>');
+             }
+             if (thirdPartyType === 'hospital') {
+                 $('#hospitalSelect').empty().append('<option disabled>Selecione primeiro o distrito</option>');
+             }
+             return;
+         }
+         
+         // Filter and populate polices by district
+         if (thirdPartyType === '1' && window.allPolices) {
+             const policeSelect = $('#policeSelect');
+             policeSelect.empty().append('<option selected disabled>Selecione a esquadra</option>');
+             
+             // Check if polices have district information for filtering
+             let filteredPolices = window.allPolices;
+             if (selectedDistrictId && window.allPolices.length > 0 && window.allPolices[0].district) {
+                 filteredPolices = window.allPolices.filter(function(police) {
+                     return police.district && police.district.id == selectedDistrictId;
+                 });
+             }
+             
+             if (filteredPolices.length > 0) {
+                 filteredPolices.forEach(function(police) {
+                     policeSelect.append(new Option(police.name, police.id));
+                 });
+             } else {
+                 policeSelect.append('<option disabled>Nenhuma esquadra encontrada neste distrito</option>');
+             }
+         }
+         
+         // Filter and populate hospitals by district
+         if (thirdPartyType === '2' && window.allHospitals) {
+             const hospitalSelect = $('#hospitalSelect');
+             hospitalSelect.empty().append('<option selected disabled>Selecione o hospital</option>');
+             
+             const filteredHospitals = window.allHospitals.filter(function(hospital) {
+                 return hospital.district && hospital.district.id == selectedDistrictId;
+             });
+             
+             if (filteredHospitals.length > 0) {
+                 filteredHospitals.forEach(function(hospital) {
+                     hospitalSelect.append(new Option(hospital.name, hospital.id));
+                 });
+             } else {
+                 hospitalSelect.append('<option disabled>Nenhum hospital encontrado neste distrito</option>');
+             }
+         }
+         
+         // Populate tribunals (might not have district filtering)
+         if (thirdPartyType === '3' && window.allTribunals) {
+             const tribunalSelect = $('#tribunalSelect');
+             tribunalSelect.empty().append('<option selected disabled>Selecione o tribunal</option>');
+             
+             window.allTribunals.forEach(function(tribunal) {
+                 tribunalSelect.append(new Option(tribunal.name, tribunal.id));
+             });
+         }
+     }
+     
+     // Update third party options when third party type changes
+     $('#thirdPartySelect').on('change', function() {
+         const value = this.value;
+         const detailsDiv = document.getElementById('thirdPartyDetails');
+         
+         // Hide all third party option divs
+         document.getElementById('policeStationDiv').style.display = 'none';
+         document.getElementById('hospitalDiv').style.display = 'none';
+         document.getElementById('courtDiv').style.display = 'none';
+         
+         if (value) {
+             detailsDiv.style.display = 'block';
+             
+             // Show the correct option div
+             if(value === 'policia') {
+                 document.getElementById('policeStationDiv').style.display = 'block';
+                 updateThirdPartyOptions();
+             }
+             if(value === 'hospital') {
+                 document.getElementById('hospitalDiv').style.display = 'block';
+                 updateThirdPartyOptions();
+             }
+             if(value === 'tribunal') {
+                 document.getElementById('courtDiv').style.display = 'block';
+                 updateThirdPartyOptions();
+             }
+             
+             // SweetAlert informativa
+             Swal.fire({
+                 icon: 'info',
+                 title: 'Atenção!',
+                 text: 'A denúncia só poderá ser finalizada após o preenchimento do parecer pelo terceiro indicado. Um e-mail ou SMS será enviado para o contato do terceiro.',
+                 confirmButtonText: 'Entendido'
+             });
+         } else {
+             detailsDiv.style.display = 'none';
+         }
+     });
 
 
 
-        // Carrega províncias e, em seguida, preenche o formulário com a denúncia
-        fetch('http://127.0.0.1:9800/api/provinces', {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 200 && data.data.provinces) {
-                const provinces = data.data.provinces;
-                provinces.forEach(province => {
-                    const option = document.createElement('option');
-                    option.value = province.id;
-                    option.textContent = province.name;
-                    provinceSelect.appendChild(option);
-                });
-                populateReport();
-            } else {
-                console.error('Erro ao obter as províncias:', data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro na requisição das províncias:', error);
-        });
+        // populateReport will be called after form options are loaded
+        // This is handled in the form-options AJAX success callback
 
         function buildStepper() {
           stepperWrapper.innerHTML = '';
@@ -1209,7 +1410,6 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
             item.addEventListener('click', () => showStep(index));
           });
         }
-
         function showStep(index) {
           if (index < 0 || index >= formSteps.length) return;
           currentStepIndex = index;
@@ -1223,12 +1423,54 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
           });
 
           prevStepBtn.disabled = index === 0;
-          nextStepBtn.disabled = index === formSteps.length - 1;
-          const isLast = index === formSteps.length - 1;
-          updateCaseBtn.disabled = !isLast;
-          submitCaseBtn.disabled = !isLast;
+          nextStepBtn.style.display = index === formSteps.length - 1 ? 'none' : 'block';
+
+          // Mostra o botão de submissão apenas na última etapa
+          const submitFinalBtn = document.getElementById('submitFinalBtn');
+          if (index === formSteps.length - 1) {
+            submitFinalBtn.style.display = 'inline-block';
+          } else {
+            submitFinalBtn.style.display = 'none';
+          }
+
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+        const submitFinalBtn = document.getElementById('submitFinalBtn');
+        submitFinalBtn.addEventListener('click', function() {
+          Swal.fire({
+            title: 'Submeter Caso Final?',
+            text: "Após a submissão final, o caso será encaminhado e não poderá ser editado novamente sem autorização.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#1e3d59',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sim, submeter!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              submitForm(true); // true = submissão final
+            }
+          });
+        });
+        // function showStep(index) {
+        //   if (index < 0 || index >= formSteps.length) return;
+        //   currentStepIndex = index;
+
+        //   formSteps.forEach((step, idx) => {
+        //     step.style.display = idx === index ? 'block' : 'none';
+        //   });
+
+        //   Array.from(stepperWrapper.children).forEach((item, idx) => {
+        //     item.classList.toggle('active', idx === index);
+        //   });
+
+        //   prevStepBtn.disabled = index === 0;
+        //   nextStepBtn.disabled = index === formSteps.length - 1;
+        //   const isLast = index === formSteps.length - 1;
+        //   updateCaseBtn.disabled = !isLast;
+        //   submitCaseBtn.disabled = !isLast;
+        //   window.scrollTo({ top: 0, behavior: 'smooth' });
+        // }
 
         prevStepBtn.addEventListener('click', () => showStep(currentStepIndex - 1));
         nextStepBtn.addEventListener('click', () => showStep(currentStepIndex + 1));
@@ -1295,23 +1537,101 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
         }
 
         // Form Submission Handler
-        submitCaseBtn.addEventListener('click', function() {
-          submitForm();
-        });
+        // submitCaseBtn.addEventListener('click', function() {
+        //   submitForm();
+        // });
 
-        updateCaseBtn.addEventListener('click', function() {
-          submitForm(false);
-        });
+        // updateCaseBtn.addEventListener('click', function() {
+        //   submitForm(false);
+        // });
 
         function submitForm(isFinalSubmission = true) {
           // Collect form data
+          const prioritySelect = document.getElementById('prioritySelect');
+          const selectedCrimes = Array.from(aggressor_history.selectedOptions).map(option => parseInt(option.value));
           const formData = {
             title: reportNumber.value || 'Denúncia',
-            district_id: currentDistrictId ? String(currentDistrictId) : "50",
-            report_type_id: "1",
-            status_id: getStatusId(statusSelect.value),
+            district_id: districtSelect.value ? Number(districtSelect.value) : (currentDistrictId ? Number(currentDistrictId) : 50),
+            third_party_opinion_id: thirdPartySelect.value ? Number(thirdPartySelect.value) : null,
+            reporter_victim_kinship_id: kinshipSelect.value ? Number(kinshipSelect.value) : null,
+            victim_legal_representative_kinship_id: relationWithVictim.value ? Number(relationWithVictim.value) : null,
+            aggressor_victim_kinship_id: relationWithVictimAgressor.value ? Number(relationWithVictimAgressor.value) : null,
+            report_type_id: 1,
+            reporter_availability: reporter_availability.value,
+            aggressor_document_number: aggressor_id_number.value,
+            status_id: statusSelect.value ? Number(statusSelect.value) : 1,
+            priority_id: prioritySelect.value ? Number(prioritySelect.value) : null,
+            special_needs:affected_people_needs_special_assistance.value? Number(affected_people_needs_special_assistance.value) : null,
             reporter_name: reporterName.value || '',
-            description: reportDescription.value || ''
+            representative_name: representative_name.value || '',
+            representative_phone_number: representative_phone_number.value || '',
+            affected_person:{
+              id:affected_person_id,
+              name: affected_people_name.value || '',
+              birth_date: affected_people_date_of_birth.value || '',
+              gender_id: affected_people_gender.value || '',
+              address: affected_people_address.value || '',
+              phone_number: affected_people_phone_numeber.value || '',
+              hs_id:healthStatusSelect.value || '',
+              // needs_special_assistance: affected_people_needs_special_assistance.value || '',
+              // special_assistance_description: affected_people_special_assistance_description.value || '',
+              // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
+            },
+            affected_person:{
+              id:affected_person_id,
+              name: affected_people_name.value || '',
+              birth_date: affected_people_date_of_birth.value || '',
+              gender_id: affected_people_gender.value || '',
+              address: affected_people_address.value || '',
+              phone_number: affected_people_phone_numeber.value || '',
+              hs_id:healthStatusSelect.value || '',
+              // needs_special_assistance: affected_people_needs_special_assistance.value || '',
+              // special_assistance_description: affected_people_special_assistance_description.value || '',
+              // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
+            },
+            aggressor:{
+              id:affected_person_id,
+              name: aggressor_name.value || '',
+              birth_date: aggressor_birth_date.value || '',
+              gender_id: aggressor_gender.value || '',
+              address: aggressor_address.value || '',
+              phone_number: aggressor_phone_number.value || '',
+              id_number:aggressor_id_number.value,
+              hs_id:''
+              // needs_special_assistance: affected_people_needs_special_assistance.value || '',
+              // special_assistance_description: affected_people_special_assistance_description.value || '',
+              // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
+            },
+            witness:{
+              id:affected_person_id,
+              name: reporter_name.value || '',
+              birth_date: reporter_birth_date.value || '',
+              gender_id: reporter_gender.value || '',
+              address: '',
+              phone_number: reporter_phone_number.value || '',
+              id_number: '',
+              hs_id:''
+              // needs_special_assistance: affected_people_needs_special_assistance.value || '',
+              // special_assistance_description: affected_people_special_assistance_description.value || '',
+              // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
+            },
+            crimes: selectedCrimes,
+            aditional_notes: adition_notes.value,
+
+
+            consolidated_observations: consolidated_details.value,
+            summary: complete_sumary.value,
+
+
+
+            aditional_details: detailed_report.value || '',
+            reporter_phone_number: reporter_phone_number.value || '',
+            detailed_report: reportDescription.value || '',
+            third_party_contact: thirdPartyContact.value || '',
+            third_party_email: thirdPartyEmail.value || '',
+            submission_chanel: submission_chanel.value || '',
+            third_party_description: thirdPartyDescription.value || '',
+            // description: reportDescription.value || ''
           };
 
           // Show loading
@@ -1365,15 +1685,6 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
           });
         }
 
-        function getStatusId(statusName) {
-          const statusMap = {
-            'Pendente': '1',
-            'Em Investigação': '2',
-            'Concluída': '3',
-            'Encaminhada': '4'
-          };
-          return statusMap[statusName] || '1';
-        }
 
 
         function populateReport() {
@@ -1396,30 +1707,191 @@ document.querySelector(".btn-primary").addEventListener("click", function() {
               reportDate.value = date.toISOString().split('T')[0];
               timeDate.value = date.toISOString().split('T')[1].split('.')[0];
             }
+            $('#additionalObservations').val(report.aditional_details ?? '');
+            $('#reportDescription').val(report.detailed_report ?? '');
+            submission_chanel.value = report.submission_chanel?? '';
+            affected_person_id.value = report.affected_person?.id ?? '';
 
+
+
+            
+            // const aggressor_id_number = document.getElementById('aggressor_id_number');
+            // const aggressor_history = document.getElementById('aggressor_history')
+
+
+            complete_sumary.value = report.summary;
+            last_change.value = report.modified_date;
+            case_worker.value = report.caseworker?.full_name;
+            consolidated_details.value = report.consolidated_observations;
+            thirdPartyContact.value = report.third_party_contact;
+            third_party_email.value = report.third_party_email;
+            third_party_description.value = report.third_party_opinion;
+            // thirdPartyContact.value = report.third_party_contact;
+
+            adition_notes.value = report.aditional_notes;
+            reporter_name.value = report.reporter?.full_name;
+            reporter_birth_date.value = report.reporter?.birth_date;
+            reporter_gender.value = report.reporter.gender;
+            reporter_phone_number.value = report.reporter_phone_number;
+            // relationWithVictim.value = report.aditional_notes;
+            detailed_report.value = report.detailed_report;
+            reporter_availability.value =report.reporter_availability
+
+            aggressor_name.value =report.aggressor?.full_name;
+            aggressor_birth_date.value = report.aggressor?.full_name;
+            aggressor_gender.value =report.aggressor?.gender;
+            relationWithVictimAgressor.value = report.aggressor_victim_kinship?.id;
+            aggressor_address.value =report.aggressor?.addresss;
+            aggressor_phone_number.value = report.aggressor_phone_number;
+            aggressor_id_number.value =report.aggressor_document_number;
+            // aggressor_birth_date.value = report.aggressor?.full_name;
+            affected_people_name.value = report.affected_person?.full_name ?? '';
+            affected_people_date_of_birth.value = report.affected_person?.birth_date ?? '';
+            affected_people_gender.value = report.affected_person?.gender ?? '';
+            affected_people_address.value = report.affected_person?.address ?? '';
+            affected_people_needs_special_assistance.value = report.affected_person?.special_needs ?? '';
+            affected_people_special_assistance_description.value = report.description ?? '';
+            representative_name.value = report.representative_name;
+            representative_phone_number.value = report.representative_phone_number;
+            reporter_phone_number.value = report.reporter?.reporter_phone_number ?? '';
             reporterName.value = report.reporter?.full_name ?? '';
             reporterContact.value = report.contact ?? '';
             reportDescription.value = report.description ?? '';
-            districtName.value = report.district?.name ?? '';
             
             // Store district_id for form submission
             if (report.district?.id) {
               currentDistrictId = report.district.id;
             }
 
+            // Set province first, which will trigger district filtering
             if (report.district?.province_id) {
               const provinceOption = Array.from(provinceSelect.options).find(opt => Number(opt.value) === report.district.province_id);
               if (provinceOption) {
                 provinceSelect.value = provinceOption.value;
+                // Trigger change event to populate districts
+                $(provinceSelect).trigger('change');
+                
+                // Set district after districts are loaded
+                setTimeout(() => {
+                  if (report.district?.id) {
+                    const districtOption = Array.from(districtSelect.options).find(opt => Number(opt.value) === report.district.id);
+                    if (districtOption) {
+                      districtSelect.value = districtOption.value;
+                    }
+                  }
+                }, 100);
               }
             }
 
-            if (report.status?.name) {
-              const statusOption = Array.from(statusSelect.options).find(opt => opt.text.toLowerCase() === report.status.name.toLowerCase());
-              if (statusOption) {
-                statusSelect.value = statusOption.text;
+            
+            const crimes = report.crimes;
+
+// Extrair os IDs dos crimes
+            const crimeIds = crimes.map(crime => String(crime.id));
+
+            // Percorrer as opções do select e marcar as correspondentes
+            Array.from(aggressor_history.options).forEach(option => {
+                if (crimeIds.includes(option.value)) {
+                    option.selected = true;
+                }
+            });
+            // Set priority
+            if (report.priority?.id) {
+              const prioritySelect = document.getElementById('prioritySelect');
+              const priorityOption = Array.from(prioritySelect.options).find(opt => Number(opt.value) === report.priority.id);
+              if (priorityOption) {
+                prioritySelect.value = priorityOption.value;
               }
             }
+            console.log(report.victim_legal_representative_kinship);
+            if (report.victim_legal_representative_kinship?.id) {
+              const prioritySelect = document.getElementById('kinshipSelect');
+              const kinshipOption = Array.from(kinshipSelect.options).find(opt => Number(opt.value) === report.victim_legal_representative_kinship.id);
+              if (kinshipOption) {
+                // alert(kinshipOption.value);
+                prioritySelect.value = kinshipOption.value;
+              }
+            }
+            if (report.reporter_victim_kinship?.id) {
+              const relationWithVictimSelect = document.getElementById('relationWithVictim');
+              const relationWithVictimOption = Array.from(relationWithVictimSelect.options).find(opt => Number(opt.value) === report.reporter_victim_kinship.id);
+              if (relationWithVictimOption) {
+                // alert(kinshipOption.value);
+                relationWithVictimSelect.value = relationWithVictimOption.value;
+              }
+            }
+
+
+            if (report.institution?.id) {
+              const thirdPartySelect = document.getElementById('thirdPartySelect');
+              const thirdPartyOption = Array.from(thirdPartySelect.options).find(opt => Number(opt.value) === report.institution.id);
+              if (thirdPartyOption) {
+                // alert(kinshipOption.value);
+                thirdPartySelect.value = thirdPartyOption.value;
+          
+                const value = this.value;
+                const detailsDiv = document.getElementById('thirdPartyDetails');
+                
+                // Hide all third party option divs
+                document.getElementById('policeStationDiv').style.display = 'none';
+                document.getElementById('hospitalDiv').style.display = 'none';
+                document.getElementById('courtDiv').style.display = 'none';
+                
+                if (value) {
+                    detailsDiv.style.display = 'block';
+                    
+                    // Show the correct option div
+                    if(value === '1') {
+                        document.getElementById('policeStationDiv').style.display = 'block';
+                        updateThirdPartyOptions();
+                    }
+                    if(value === '2') {
+                        document.getElementById('hospitalDiv').style.display = 'block';
+                        updateThirdPartyOptions();
+                    }
+                    if(value === '3') {
+                        document.getElementById('courtDiv').style.display = 'block';
+                        updateThirdPartyOptions();
+                    }
+                    
+                    // SweetAlert informativa
+                    // Swal.fire({
+                    //     icon: 'info',
+                    //     title: 'Atenção!',
+                    //     text: 'A denúncia só poderá ser finalizada após o preenchimento do parecer pelo terceiro indicado. Um e-mail ou SMS será enviado para o contato do terceiro.',
+                    //     confirmButtonText: 'Entendido'
+                    // });
+                } else {
+                    detailsDiv.style.display = 'none';
+                }
+          
+          
+              }
+            }
+
+
+            // 
+            // Set status
+            if (report.status?.id) {
+              const statusOption = Array.from(statusSelect.options).find(opt => Number(opt.value) === report.status.id);
+              if (statusOption) {
+                statusSelect.value = statusOption.value;
+              }
+            }
+            if (report.status?.id) {
+              const thirdPartyOpinionSelectOption = Array.from(document.getElementById('thirdPartyOpinionSelect').options).find(opt => Number(opt.value) === report.status.id);
+              if (thirdPartyOpinionSelectOption) {
+                document.getElementById('thirdPartyOpinionSelect').value = thirdPartyOpinionSelectOption.value;
+              }
+            }
+            
+
+            // if (report.status?.name) {
+            //   const statusOption = Array.from(statusSelect.options).find(opt => opt.text.toLowerCase() === report.status.name.toLowerCase());
+            //   if (statusOption) {
+            //     statusSelect.value = statusOption.text;
+            //   }
+            // }
           })
           .catch(error => {
             console.error('Erro na requisição da denúncia:', error);
