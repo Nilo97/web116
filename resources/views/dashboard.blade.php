@@ -57,7 +57,7 @@
         <div class="card-body d-flex align-items-center justify-content-between">
           <div>
             <h6 class="card-title text-muted">Denúncias Recebidas</h6>
-            <h4>125</h4>
+            <h4 id="totalReports">0</h4>
           </div>
           <i class="fa-solid fa-inbox fa-2x text-primary"></i>
         </div>
@@ -69,7 +69,7 @@
         <div class="card-body d-flex align-items-center justify-content-between">
           <div>
             <h6 class="card-title text-muted">Denúncias Concluídas</h6>
-            <h4>98</h4>
+            <h4 id="closedReports">0</h4>
           </div>
           <i class="fa-solid fa-check fa-2x text-success"></i>
         </div>
@@ -81,7 +81,7 @@
         <div class="card-body d-flex align-items-center justify-content-between">
           <div>
             <h6 class="card-title text-muted">Denúncias Pendentes</h6>
-            <h4>22</h4>
+            <h4 id="pendingReports">0</h4>
           </div>
           <i class="fa-solid fa-hourglass-half fa-2x text-warning"></i>
         </div>
@@ -92,8 +92,8 @@
       <div class="card shadow-sm h-100 border-start border-4 border-danger">
         <div class="card-body d-flex align-items-center justify-content-between">
           <div>
-            <h6 class="card-title text-muted">Denúncias Urgentes</h6>
-            <h4>5</h4>
+            <h6 class="card-title text-muted">Denúncias Em Progresso</h6>
+            <h4 id="inProgressReports">0</h4>
           </div>
           <i class="fa-solid fa-triangle-exclamation fa-2x text-danger"></i>
         </div>
@@ -215,35 +215,144 @@
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-const ctx = document.getElementById('monthlyCasesChart').getContext('2d');
-new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-    datasets: [{
-      label: 'Denúncias Recebidas',
-      data: [12, 19, 14, 23, 17, 25],
-      borderColor: '#0d6efd',
-      backgroundColor: 'rgba(13,110,253,0.1)',
-      tension: 0.3,
-      fill: true
-    }]
-  },
-  options: { responsive: true, plugins: { legend: { display: false } } }
-});
+// Variáveis globais para os gráficos
+let monthlyChart = null;
+let typeChart = null;
 
-const ctx2 = document.getElementById('caseTypeChart').getContext('2d');
-new Chart(ctx2, {
-  type: 'doughnut',
-  data: {
-    labels: ['Violência Física', 'Negligência', 'Abuso Sexual', 'Outro'],
-    datasets: [{
-      data: [40, 25, 30, 10],
-      backgroundColor: ['#0d6efd','#198754','#ffc107','#dc3545'],
-      borderWidth: 1
-    }]
-  },
-  options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+// Função para buscar dados da API
+async function loadDashboardData() {
+  const authToken = localStorage.getItem('auth_token');
+  if (!authToken) {
+    console.error('Token de autenticação não encontrado.');
+    return;
+  }
+
+  try {
+    const response = await fetch('http://127.0.0.1:9800/api/dashboard/summary', {
+      headers: {
+        'Authorization': `Bearer ${authToken}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro ao carregar dados do dashboard');
+    }
+
+    const result = await response.json();
+    const data = result.data;
+
+    // Atualizar cards de estatísticas
+    updateStatisticsCards(data.reportsByStatus);
+
+    // Atualizar gráficos
+    updateMonthlyChart(data.reportsByMonth);
+    updateTypeChart(data.reportsByType);
+
+  } catch (error) {
+    console.error('Erro ao carregar dados:', error);
+  }
+}
+
+// Função para atualizar os cards de estatísticas
+function updateStatisticsCards(reportsByStatus) {
+  let totalReports = 0;
+  let closedReports = 0;
+  let pendingReports = 0;
+  let inProgressReports = 0;
+
+  reportsByStatus.forEach(status => {
+    totalReports += status.total;
+    
+    if (status.status === 'Fechado') {
+      closedReports = status.total;
+    } else if (status.status === 'Pendente') {
+      pendingReports = status.total;
+    } else if (status.status === 'Em progresso') {
+      inProgressReports = status.total;
+    }
+  });
+
+  document.getElementById('totalReports').textContent = totalReports;
+  document.getElementById('closedReports').textContent = closedReports;
+  document.getElementById('pendingReports').textContent = pendingReports;
+  document.getElementById('inProgressReports').textContent = inProgressReports;
+}
+
+// Função para atualizar o gráfico mensal
+function updateMonthlyChart(reportsByMonth) {
+  const ctx = document.getElementById('monthlyCasesChart').getContext('2d');
+  
+  const labels = reportsByMonth.map(item => item.month);
+  const data = reportsByMonth.map(item => item.total);
+  const colors = reportsByMonth.map(item => item.color);
+
+  // Destruir gráfico existente se houver
+  if (monthlyChart) {
+    monthlyChart.destroy();
+  }
+
+  monthlyChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Denúncias Recebidas',
+        data: data,
+        borderColor: '#0d6efd',
+        backgroundColor: 'rgba(13,110,253,0.1)',
+        tension: 0.3,
+        fill: true
+      }]
+    },
+    options: { 
+      responsive: true, 
+      plugins: { 
+        legend: { display: false } 
+      } 
+    }
+  });
+}
+
+// Função para atualizar o gráfico de tipos
+function updateTypeChart(reportsByType) {
+  const ctx2 = document.getElementById('caseTypeChart').getContext('2d');
+  
+  // Filtrar apenas tipos com total > 0 para melhor visualização
+  const filteredTypes = reportsByType.filter(item => item.total > 0);
+  
+  const labels = filteredTypes.map(item => item.type);
+  const data = filteredTypes.map(item => item.total);
+  const backgroundColor = filteredTypes.map(item => item.color);
+
+  // Destruir gráfico existente se houver
+  if (typeChart) {
+    typeChart.destroy();
+  }
+
+  typeChart = new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: backgroundColor,
+        borderWidth: 1
+      }]
+    },
+    options: { 
+      responsive: true, 
+      plugins: { 
+        legend: { position: 'bottom' } 
+      } 
+    }
+  });
+}
+
+// Carregar dados quando a página estiver pronta
+document.addEventListener('DOMContentLoaded', function() {
+  loadDashboardData();
 });
 </script>
 
