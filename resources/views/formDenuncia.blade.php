@@ -254,7 +254,7 @@
           </ul>
         </li>
         <li class="onhover-dropdown p-0">
-          <button class="btn btn-primary-light" type="button"><a href="login_two.html"><i data-feather="log-out"></i>Sair</a></button>
+          <button class="btn btn-primary-light" type="button"><a href="{{route('login')}}"><i data-feather="log-out"></i>Sair</a></button>
         </li>
       </ul>
     </div>
@@ -814,10 +814,10 @@
       <label class="form-label">Encaminhar Para</label>
       <select id="thirdPartySelect" class="form-select">
         <option value="">-- Nenhum --</option>
-        <option value="policia">Polícia</option>
-        <option value="hospital">Hospital</option>
-        <option value="tribunal">Tribunal</option>
-        <option value="outro">Outro</option>
+        <option value="1">Polícia</option>
+        <option value="2">Hospital</option>
+        <option value="3">Tribunal</option>
+        <option value="4">Outro</option>
       </select>
     </div>
 
@@ -1060,7 +1060,7 @@
         const relationWithVictim = document.getElementById('relationWithVictim');
         const detailed_report = document.getElementById('detailed_report');
         const adition_notes = document.getElementById('adition_notes');
-        const reporter_availability = document.getElementById('adition_notes');
+        const reporter_availability = document.getElementById('reporter_availability');
         const third_party_description = document.getElementById('third_party_description')
         const provinceSelect = document.getElementById('provinceSelect');
         const aggressor_name = document.getElementById('aggressor_name');
@@ -1108,7 +1108,7 @@
         const submitCaseBtn = document.getElementById('submitCaseBtn');
         const thirdPartyContact = document.getElementById('thirdPartyContact');
         const thirdPartyEmail = document.getElementById('thirdPartyEmail');
-        const thirdPartyDescription = document.getElementById('thirdPartyDescription');
+        const thirdPartyDescription = document.getElementById('third_party_description');
         let currentStepIndex = 0;
         let currentDistrictId = null;
 
@@ -1553,11 +1553,15 @@
             title: reportNumber.value || 'Denúncia',
             district_id: districtSelect.value ? Number(districtSelect.value) : (currentDistrictId ? Number(currentDistrictId) : 50),
             third_party_opinion_id: thirdPartySelect.value ? Number(thirdPartySelect.value) : null,
+            third_party_opinion_id: $('#thirdPartyOpinionSelect').val(),
+            //  ? Number(thirdPartySelect.value) : null,
             reporter_victim_kinship_id: kinshipSelect.value ? Number(kinshipSelect.value) : null,
             victim_legal_representative_kinship_id: relationWithVictim.value ? Number(relationWithVictim.value) : null,
             aggressor_victim_kinship_id: relationWithVictimAgressor.value ? Number(relationWithVictimAgressor.value) : null,
             report_type_id: 1,
+            initial_description:reportDescription.value || '',
             reporter_availability: reporter_availability.value,
+            reporter_contact: reporterContact.value || '',
             aggressor_document_number: aggressor_id_number.value,
             status_id: statusSelect.value ? Number(statusSelect.value) : 1,
             priority_id: prioritySelect.value ? Number(prioritySelect.value) : null,
@@ -1566,7 +1570,7 @@
             representative_name: representative_name.value || '',
             representative_phone_number: representative_phone_number.value || '',
             affected_person:{
-              id:affected_person_id,
+              // id:affected_person_id,
               name: affected_people_name.value || '',
               birth_date: affected_people_date_of_birth.value || '',
               gender_id: affected_people_gender.value || '',
@@ -1577,20 +1581,20 @@
               // special_assistance_description: affected_people_special_assistance_description.value || '',
               // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
             },
-            affected_person:{
-              id:affected_person_id,
-              name: affected_people_name.value || '',
-              birth_date: affected_people_date_of_birth.value || '',
-              gender_id: affected_people_gender.value || '',
-              address: affected_people_address.value || '',
-              phone_number: affected_people_phone_numeber.value || '',
-              hs_id:healthStatusSelect.value || '',
-              // needs_special_assistance: affected_people_needs_special_assistance.value || '',
-              // special_assistance_description: affected_people_special_assistance_description.value || '',
-              // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
-            },
+            // affected_person:{
+            //   id:affected_person_id,
+            //   name: affected_people_name.value || '',
+            //   birth_date: affected_people_date_of_birth.value || '',
+            //   gender_id: affected_people_gender.value || '',
+            //   address: affected_people_address.value || '',
+            //   phone_number: affected_people_phone_numeber.value || '',
+            //   hs_id:healthStatusSelect.value || '',
+            //   // needs_special_assistance: affected_people_needs_special_assistance.value || '',
+            //   // special_assistance_description: affected_people_special_assistance_description.value || '',
+            //   // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
+            // },
             aggressor:{
-              id:affected_person_id,
+              // id:affected_person_id,
               name: aggressor_name.value || '',
               birth_date: aggressor_birth_date.value || '',
               gender_id: aggressor_gender.value || '',
@@ -1603,7 +1607,7 @@
               // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
             },
             witness:{
-              id:affected_person_id,
+              // id:affected_person_id,
               name: reporter_name.value || '',
               birth_date: reporter_birth_date.value || '',
               gender_id: reporter_gender.value || '',
@@ -1663,7 +1667,7 @@
                 confirmButtonText: 'OK'
               }).then(() => {
                 // Optionally redirect or reload
-                // window.location.reload();
+                window.location.reload();
               });
             } else {
               Swal.fire({
@@ -1727,7 +1731,7 @@
             third_party_email.value = report.third_party_email;
             third_party_description.value = report.third_party_opinion;
             // thirdPartyContact.value = report.third_party_contact;
-
+            reportDescription.value = report.initial_description;
             adition_notes.value = report.aditional_notes;
             reporter_name.value = report.reporter?.full_name;
             reporter_birth_date.value = report.reporter?.birth_date;
