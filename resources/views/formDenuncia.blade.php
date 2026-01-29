@@ -806,7 +806,7 @@
 <!-- Terceiros -->
 
 <!-- Encaminhamento a Terceiros -->
-<div class="form-section form-step" data-step="5" data-step-title="Encaminhamento a Terceiros">
+<div class="form-section form-step" id="step-5" hidden data-step="5" data-step-title="Encaminhamento a Terceiros">
   <h5><i class="fa-solid fa-share-from-square me-2"></i>Encaminhamento a Terceiros</h5>
   <div class="row g-3">
     <!-- Seleção do Terceiro -->
@@ -897,7 +897,7 @@
 
   <!-- Intervenientes -->
 <!-- Histórico Geral do Caso (Somente Visualização) -->
-<div class="form-section form-step" data-step="6" data-step-title="Histórico do Caso">
+<div class="form-section form-step" id="step-6" hidden data-step="6" data-step-title="Histórico do Caso">
   <h5><i class="fa-solid fa-book-open-reader me-2"></i>Histórico Geral do Caso</h5>
   <div class="row g-3">
     <div class="col-12">
@@ -1116,7 +1116,19 @@
         // const reportToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2NTc0MjMyMiwianRpIjoiYWNiOTI2MjQtYjE0OS00NzJlLWEzZjEtYTEwNmQ4NWUyZTAzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjU3NDIzMjIsImV4cCI6MTc2NTc0NTkyMn0.AGhkBWNQVEY4G-u36jaTP1zerG-X9wU6ROk830FEgb8';
         const token = localStorage.getItem('auth_token');
         if (!token) { Swal.fire('Erro', 'Faça login primeiro.', 'error'); return; }
-        
+        const user = JSON.parse(localStorage.getItem('user_data'));
+        console.log(user);
+        if(user.roles.length > 0) {
+          if(user.roles[0].name === 'Conselheiro') {
+            document.getElementById('step-5').setAttribute('hidden','true');
+            document.getElementById('step-6').setAttribute('hidden','true');
+            // window.location.href = '/dashboard';
+          } else {
+            document.getElementById('step-5').removeAttribute('hidden');
+            document.getElementById('step-6').removeAttribute('hidden');
+            // window.location.href = '/casos';
+          }
+        }
         const reportId = {{ $id ?? 'null' }};
 
 
@@ -1396,6 +1408,9 @@
         function buildStepper() {
           stepperWrapper.innerHTML = '';
           formSteps.forEach((step, index) => {
+            if(user.roles[0].name === 'Conselheiro' && index >=4) {
+              return;
+            }
             const item = document.createElement('div');
             item.className = 'stepper-item';
             item.dataset.index = index;
@@ -1408,6 +1423,7 @@
             item.appendChild(title);
             stepperWrapper.appendChild(item);
             item.addEventListener('click', () => showStep(index));
+            // }
           });
         }
         function showStep(index) {
@@ -1422,6 +1438,8 @@
             item.classList.toggle('active', idx === index);
           });
 
+          alert(index);
+
           prevStepBtn.disabled = index === 0;
           nextStepBtn.style.display = index === formSteps.length - 1 ? 'none' : 'block';
 
@@ -1434,6 +1452,10 @@
           }
 
           window.scrollTo({ top: 0, behavior: 'smooth' });
+          if(user.roles[0].name === 'Conselheiro' && (index >= 3)) {
+            nextStepBtn.style.display = 'none';
+            submitFinalBtn.style.display = 'inline-block';
+          }
         }
         const submitFinalBtn = document.getElementById('submitFinalBtn');
         submitFinalBtn.addEventListener('click', function() {

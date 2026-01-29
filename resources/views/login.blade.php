@@ -151,12 +151,12 @@
               localStorage.setItem('auth_token', response.data.access_token);
               
               // Se a API retornar dados do usuário, armazene-os também
-              if (response.user) {
+              if (response.data.user) {
                 localStorage.setItem('user_data', JSON.stringify(response.data.user));
               }
               
               // Redireciona para a página de casos
-              window.location.href = '/casos';
+              window.location.href = '/dashboard';
             },
             error: function(xhr) {
               $('#loginButton').prop('disabled', false).html('Entrar');

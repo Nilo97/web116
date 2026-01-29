@@ -44,7 +44,7 @@
                     <i data-feather="file-text"></i><span>Denúncias</span></a>
                   <ul class="nav-submenu menu-content">
                     <li><a href="#">Nova Denúncia</a></li>
-                    <li><a href="{{ route('casos1') }}">Todas as Denúncias</a></li>
+                    <li><a href="{{ route('casos') }}">Todas as Denúncias</a></li>
                     <li><a href="{{ route('audiodenuncia') }}">Audio Denuncia</a></li>
                     <li><a href="#">Estados das Denúncias</a></li>
                   </ul>

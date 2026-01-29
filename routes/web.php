@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::middleware(['api.token'])->group(function () {
     Route::get('/casos', function () {
         return view('casos');
-    });
+    })->name('casos');
 
     Route::get('/file-manager', function () {
         return view('file-manager');
@@ -60,7 +60,7 @@ Route::get('/suporte', function () {
 })->name('suporte');
 
 Route::get('/casos1', function () {
-    return view('casos1');
+    return view('casos');
 })->name('casos1');
 
 
