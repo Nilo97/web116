@@ -546,8 +546,8 @@
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-venus-mars"></i></span>
         <select class="form-select" id="afected_people_gender">
-          <option id="1">Masculino</option>
-          <option id="2">Feminino</option>
+          <option value="1">Masculino</option>
+          <option value="2">Feminino</option>
           <!-- <option>Outro</option> -->
         </select>
       </div>
@@ -573,7 +573,7 @@
         <input type="text" id="victimDocumentNumber" class="form-control" placeholder="Número do documento">
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" hidden>
       <label class="form-label">BI Frente</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
@@ -581,7 +581,7 @@
       </div>
       <small class="text-muted">Selecione a imagem da frente do BI</small>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" hidden>
       <label class="form-label">BI Verso</label>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
@@ -1082,6 +1082,7 @@
         const affected_person_id = document.getElementById('affected_person_id')
         const representative_phone_number = document.getElementById('representative_phone_number')
         const representative_name = document.getElementById('representative_name')
+        const aggressor_important_observation = document.getElementById('aggressor_important_observation');
         const affected_people_phone_numeber = document.getElementById('afected_people_phone_numeber');
         const affected_people_needs_special_assistance = document.getElementById('afected_people_needs_special_assistance');
         const affected_people_special_assistance_description = document.getElementById('young_people_observations');
@@ -1583,6 +1584,7 @@
             report_type_id: 1,
             initial_description:reportDescription.value || '',
             reporter_availability: reporter_availability.value,
+            important_observation: aggressor_important_observation.value,
             reporter_contact: reporterContact.value || '',
             aggressor_document_number: aggressor_id_number.value,
             status_id: statusSelect.value ? Number(statusSelect.value) : 1,
@@ -1598,7 +1600,8 @@
               gender_id: affected_people_gender.value || '',
               address: affected_people_address.value || '',
               phone_number: affected_people_phone_numeber.value || '',
-              hs_id:healthStatusSelect.value || '',
+              health_status_id:healthStatusSelect.value || '',
+              document_number: victimDocumentNumber.value || ''
               // needs_special_assistance: affected_people_needs_special_assistance.value || '',
               // special_assistance_description: affected_people_special_assistance_description.value || '',
               // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
@@ -1623,7 +1626,7 @@
               address: aggressor_address.value || '',
               phone_number: aggressor_phone_number.value || '',
               id_number:aggressor_id_number.value,
-              hs_id:''
+              health_status_id:''
               // needs_special_assistance: affected_people_needs_special_assistance.value || '',
               // special_assistance_description: affected_people_special_assistance_description.value || '',
               // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
@@ -1636,7 +1639,7 @@
               address: '',
               phone_number: reporter_phone_number.value || '',
               id_number: '',
-              hs_id:''
+              health_status_id:''
               // needs_special_assistance: affected_people_needs_special_assistance.value || '',
               // special_assistance_description: affected_people_special_assistance_description.value || '',
               // institution_id: institutionSelect.value ? Number(institutionSelect.value) : null,
@@ -1758,24 +1761,33 @@
             reporter_name.value = report.reporter?.full_name;
             reporter_birth_date.value = report.reporter?.birth_date;
             reporter_gender.value = report.reporter.gender;
-            reporter_phone_number.value = report.reporter_phone_number;
+            // reporter_phone_number.value = report.reporter_phone_number;
             // relationWithVictim.value = report.aditional_notes;
             detailed_report.value = report.detailed_report;
-            reporter_availability.value =report.reporter_availability
-
+            reporter_availability.value =report.reporter_availability;
+            
+            aggressor_important_observation.value = report.important_observation;
             aggressor_name.value =report.aggressor?.full_name;
-            aggressor_birth_date.value = report.aggressor?.full_name;
+            aggressor_birth_date.value = report.aggressor?.birth_date;
             aggressor_gender.value =report.aggressor?.gender;
+            reporter_phone_number.value = report.reporter?.phone_number;
             relationWithVictimAgressor.value = report.aggressor_victim_kinship?.id;
-            aggressor_address.value =report.aggressor?.addresss;
+            aggressor_address.value =report.aggressor?.address;
             aggressor_phone_number.value = report.aggressor_phone_number;
             aggressor_id_number.value =report.aggressor_document_number;
+            afected_people_gender.value = report.affected_person?.gender;
+            console.log(afected_people_gender );
+            console.log(prioritySelect);
             // aggressor_birth_date.value = report.aggressor?.full_name;
             affected_people_name.value = report.affected_person?.full_name ?? '';
             affected_people_date_of_birth.value = report.affected_person?.birth_date ?? '';
-            affected_people_gender.value = report.affected_person?.gender ?? '';
+            // alert(report.affected_person?.gender);
+            healthStatusSelect.value = report.affected_person?.health_status?.id ?? '';
+            victimDocumentNumber.value = report.affected_person?.id_number ?? '';
+            // afected_people_gender
+            affected_people_phone_numeber.value = report.affected_person?.phone_number ?? '';
             affected_people_address.value = report.affected_person?.address ?? '';
-            affected_people_needs_special_assistance.value = report.affected_person?.special_needs ?? '';
+            affected_people_needs_special_assistance.value = report.special_needs ?? '';
             affected_people_special_assistance_description.value = report.description ?? '';
             representative_name.value = report.representative_name;
             representative_phone_number.value = report.representative_phone_number;
@@ -1910,7 +1922,8 @@
                 document.getElementById('thirdPartyOpinionSelect').value = thirdPartyOpinionSelectOption.value;
               }
             }
-            
+
+            // alert(afected_people_gender.value );s
 
             // if (report.status?.name) {
             //   const statusOption = Array.from(statusSelect.options).find(opt => opt.text.toLowerCase() === report.status.name.toLowerCase());
