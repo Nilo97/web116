@@ -1439,7 +1439,7 @@
             item.classList.toggle('active', idx === index);
           });
 
-          alert(index);
+          // alert(index);
 
           prevStepBtn.disabled = index === 0;
           nextStepBtn.style.display = index === formSteps.length - 1 ? 'none' : 'block';
@@ -1657,9 +1657,9 @@
             reporter_phone_number: reporter_phone_number.value || '',
             detailed_report: reportDescription.value || '',
             third_party_contact: thirdPartyContact.value || '',
-            third_party_email: thirdPartyEmail.value || '',
+            third_party_email: third_party_email.value || '',
             submission_chanel: submission_chanel.value || '',
-            third_party_description: thirdPartyDescription.value || '',
+            third_party_description: third_party_description.value || '',
             // description: reportDescription.value || ''
           };
 
@@ -1754,7 +1754,7 @@
             consolidated_details.value = report.consolidated_observations;
             thirdPartyContact.value = report.third_party_contact;
             third_party_email.value = report.third_party_email;
-            third_party_description.value = report.third_party_opinion;
+            third_party_description.value = report.third_party_description;
             // thirdPartyContact.value = report.third_party_contact;
             reportDescription.value = report.initial_description;
             adition_notes.value = report.aditional_notes;
@@ -1778,6 +1778,8 @@
             afected_people_gender.value = report.affected_person?.gender;
             console.log(afected_people_gender );
             console.log(prioritySelect);
+            complete_sumary.value = montarResumo(result);
+            consolidated_details.value = montarObservacoesConsolidadas(result);
             // aggressor_birth_date.value = report.aggressor?.full_name;
             affected_people_name.value = report.affected_person?.full_name ?? '';
             affected_people_date_of_birth.value = report.affected_person?.birth_date ?? '';
@@ -1937,6 +1939,109 @@
           });
         }
     });
+    function montarResumo(json) {
+      const d = json.data;
+
+      const crimes = d.crimes?.map(c => `- ${c.name}`).join("\n") || "Não informado";
+
+      return `
+        RESUMO DA DENÚNCIA
+        =================
+
+        📌 INFORMAÇÕES GERAIS
+        Título: ${d.title}
+        Tipo de Denúncia: ${d.report_type?.name || "Não informado"}
+        Prioridade: ${d.priority?.name || "Não informado"}
+        Estado: ${d.status?.name || "Não informado"}
+        Data de Criação: ${new Date(d.creation_date).toLocaleString()}
+
+        📍 LOCALIZAÇÃO
+        Distrito: ${d.district?.name || "Não informado"}
+        Contacto: ${d.contact || "Não informado"}
+
+        👤 VÍTIMA
+        Nome: ${d.affected_person?.full_name || "Não informado"}
+        Data de Nascimento: ${d.affected_person?.birth_date || "Não informado"}
+        Telefone: ${d.affected_person?.phone_number || "Não informado"}
+        Endereço: ${d.affected_person?.address || "Não informado"}
+        Condição de Saúde: ${d.affected_person?.health_status?.name || "Não informado"}
+
+        👤 AGRESSOR
+        Nome: ${d.aggressor?.full_name || "Não informado"}
+        Data de Nascimento: ${d.aggressor?.birth_date || "Não informado"}
+        Telefone: ${d.aggressor?.phone_number || "Não informado"}
+        Documento: ${d.aggressor_document_number || "Não informado"}
+        Parentesco com a vítima: ${d.aggressor_victim_kinship?.name || "Não informado"}
+
+        👁️ TESTEMUNHA
+        Nome: ${d.witness?.full_name || "Não informado"}
+        Telefone: ${d.witness?.phone_number || "Não informado"}
+        Endereço: ${d.witness?.address || "Não informado"}
+
+        🧾 CRIMES REPORTADOS
+        ${crimes}
+
+        📝 DESCRIÇÃO
+        ${d.description || "Não informado"}
+
+        📝 RELATO DETALHADO
+        ${d.detailed_report || "Não informado"}
+
+        ⚠️ OBSERVAÇÕES IMPORTANTES
+        ${d.important_observation || "Nenhuma"}
+
+        🗒️ OBSERVAÇÕES ADICIONAIS
+        ${d.aditional_notes || "Nenhuma"}
+
+        👤 DENUNCIANTE
+        Nome: ${d.reporter?.full_name || "Não informado"}
+        Parentesco com a vítima: ${d.reporter_victim_kinship?.name || "Não informado"}
+
+        👤 REPRESENTANTE LEGAL
+        Nome: ${d.representative_name || "Não informado"}
+        Telefone: ${d.representative_phone_number || "Não informado"}
+
+        =================
+        FIM DO RESUMO
+        `.trim();
+    }
+    function montarObservacoesConsolidadas(json) {
+      const d = json.data;
+      const obs = [];
+
+      if (d.consolidated_observations) {
+        obs.push(`🧾 OBSERVAÇÕES CONSOLIDADAS\n${d.consolidated_observations}`);
+      }
+
+      if (d.important_observation) {
+        obs.push(`⚠️ OBSERVAÇÕES IMPORTANTES\n${d.important_observation}`);
+      }
+
+      if (d.aditional_notes) {
+        obs.push(`📝 OBSERVAÇÕES ADICIONAIS\n${d.aditional_notes}`);
+      }
+
+      if (d.third_party_opinion?.name) {
+        obs.push(`👤 PARECER DE TERCEIROS\n${d.third_party_opinion.name}`);
+      }
+
+      if (d.third_party_contact || d.third_party_email) {
+        obs.push(
+          `📞 CONTACTO DO TERCEIRO\n` +
+          `Telefone: ${d.third_party_contact || "Não informado"}\n` +
+          `Email: ${d.third_party_email || "Não informado"}`
+        );
+      }
+
+      if (d.summary) {
+        obs.push(`📌 NOTAS INTERNAS\n${d.summary}`);
+      }
+
+      return obs.length
+        ? obs.join("\n\n-------------------------\n\n")
+        : "Não existem observações registradas até o momento.";
+    }
+
     </script>
   </body>
 </html>
