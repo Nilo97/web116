@@ -51,55 +51,55 @@
           <div class="col-xl-5 p-0">
             <div class="login-card">
      <form id="loginForm" class="theme-form login-form">
-  <h4>Entrar</h4>
-  <h6>Bem-vindo de volta! Acesse a sua conta.</h6>
-  
-  <div id="loginMessage" class="alert alert-danger" style="display: none;"></div>
+        <h4>Entrar</h4>
+        <h6>Bem-vindo de volta! Acesse a sua conta.</h6>
+        
+        <div id="loginMessage" class="alert alert-danger" style="display: none;"></div>
 
-  <div class="form-group">
-    <label>Email</label>
-    <div class="input-group">
-      <span class="input-group-text"><i class="icon-email"></i></span>
-      <input class="form-control" type="email" id="username" required placeholder="exemplo@gmail.com">
-    </div>
-  </div>
+        <div class="form-group">
+          <label>Email</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="icon-email"></i></span>
+            <input class="form-control" type="email" id="username" required placeholder="exemplo@gmail.com">
+          </div>
+        </div>
 
-  <div class="form-group">
-    <label>Palavra-passe</label>
-    <div class="input-group">
-      <span class="input-group-text"><i class="icon-lock"></i></span>
-      <input class="form-control" type="password" id="password" required placeholder="*********">
-      <div class="show-hide"><span class="show"></span></div>
-    </div>
-  </div>
+        <div class="form-group">
+          <label>Palavra-passe</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="icon-lock"></i></span>
+            <input class="form-control" type="password" id="password" required placeholder="*********">
+            <div class="show-hide"><span class="show"></span></div>
+          </div>
+        </div>
 
-  <div class="form-group">
-    <div class="checkbox">
-      <input id="checkbox1" type="checkbox">
-      <label class="text-muted" for="checkbox1">Lembrar palavra-passe</label>
-    </div>
-    <a class="link" href="forget-password.html">Esqueceu a palavra-passe?</a>
-  </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <input id="checkbox1" type="checkbox">
+            <label class="text-muted" for="checkbox1">Lembrar palavra-passe</label>
+          </div>
+          <a class="link" href="forget-password.html">Esqueceu a palavra-passe?</a>
+        </div>
 
-  <div class="form-group">
-    <button id="loginButton" class="btn btn-primary btn-block" type="submit">Entrar</button>
-  </div>
+        <div class="form-group">
+          <button id="loginButton" class="btn btn-primary btn-block" type="submit">Entrar</button>
+        </div>
 
-  <div class="login-social-title">                
-    <h5>Entrar com</h5>
-  </div>
+        <div class="login-social-title">                
+          <h5>Entrar com</h5>
+        </div>
 
-  <div class="form-group">
-    <ul class="login-social">
-      <li><a href="#" target="_blank"><i data-feather="linkedin"></i></a></li>
-      <li><a href="#" target="_blank"><i data-feather="twitter"></i></a></li>
-      <li><a href="#" target="_blank"><i data-feather="facebook"></i></a></li>
-      <li><a href="#" target="_blank"><i data-feather="instagram"></i></a></li>
-    </ul>
-  </div>
+        <div class="form-group">
+          <ul class="login-social">
+            <li><a href="#" target="_blank"><i data-feather="linkedin"></i></a></li>
+            <li><a href="#" target="_blank"><i data-feather="twitter"></i></a></li>
+            <li><a href="#" target="_blank"><i data-feather="facebook"></i></a></li>
+            <li><a href="#" target="_blank"><i data-feather="instagram"></i></a></li>
+          </ul>
+        </div>
 
-  <p>Não tem conta?<a class="ms-2" href="#">Criar Conta</a></p>
-</form>
+        <p>Não tem conta?<a class="ms-2" href="#">Criar Conta</a></p>
+      </form>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@
     <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
     <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
     <!-- Sidebar jquery-->
-    <script src="../assets/js/sidebar-menu.js"></script>
+    <!-- <script src="../assets/js/sidebar-menu.js"></script> -->
     <script src="../assets/js/config.js"></script>
     <!-- Bootstrap js-->
     <script src="../assets/js/bootstrap/popper.min.js"></script>
@@ -120,12 +120,15 @@
     <!-- Plugins JS start-->
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
+
     <script src="../assets/js/script.js"></script>
     <!-- login js-->
     <script>
       $(document).ready(function() {
+        // console.log($('#loginForm'));
         $('#loginForm').on('submit', function(e) {
           e.preventDefault();
+          // alert("Ola")
           
           var username = $('#username').val();
           var password = $('#password').val();
@@ -135,7 +138,8 @@
           
           // Usar a variável de ambiente diretamente no JavaScript
           var apiLoginUrl = '{{ env("API_LOGIN_URL") }}';
-          
+          // alert(apiLoginUrl);
+          console.log(apiLoginUrl);
           $.ajax({
             url: apiLoginUrl,
             type: 'POST',

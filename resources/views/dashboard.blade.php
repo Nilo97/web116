@@ -228,7 +228,7 @@ async function loadDashboardData() {
   }
 
   try {
-    const response = await fetch('http://127.0.0.1:9800/api/dashboard/summary', {
+    const response = await fetch('{{ env("API_SUMMARY") }}', {
       headers: {
         'Authorization': `Bearer ${authToken}`,
         'Content-Type': 'application/json',

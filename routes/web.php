@@ -62,6 +62,9 @@ Route::get('/suporte', function () {
 Route::get('/casos1', function () {
     return view('casos');
 })->name('casos1');
+Route::get('/add_report', function () {
+    return view('submit-report');
+})->name('add_report');
 
 
 Route::get('/file-manager1', function () {

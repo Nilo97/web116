@@ -61,10 +61,10 @@
       <div class="main-header-right row m-0">
         <div class="main-header-left">
           <div class="logo-wrapper">
-            <a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo.jpg" alt="Logo"></a>
+            <a href="{{ route('dashboard') }}"><img class="img-fluid" src="../assets/images/logo/logo.jpg" alt="Logo"></a>
           </div>
           <div class="dark-logo-wrapper">
-            <a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo.png" alt="Logo Escuro"></a>
+            <a href="{{ route('dashboard') }}"><img class="img-fluid" src="../assets/images/logo/logo.png" alt="Logo Escuro"></a>
           </div>
           <div class="toggle-sidebar">
             <i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i>
@@ -218,7 +218,7 @@
                   </div>
                 </li>
                 <li>
-                  <a class="nav-link" href="index.html"><i data-feather="home"></i><span>Visão Geral</span></a>
+                  <a class="nav-link" href="{{ route('dashboard') }}"><i data-feather="home"></i><span>Visão Geral</span></a>
                 </li>
 
                 <!-- Denúncias -->
@@ -332,7 +332,7 @@
             <div class="col-sm-6">
               <h3>Todas as Denúncias</h3>
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item active">Denúncias</li>
               </ol>
             </div>
@@ -415,8 +415,8 @@
 
 <!-- SCRIPT PRINCIPAL COM PAGINAÇÃO E FILTROS -->
 <script>
-  const API_BASE = 'http://127.0.0.1:9800/api/reports';
-  const API_FILTER = 'http://127.0.0.1:9800/api/reports/filter';
+  const API_BASE = '{{ env("API_REPORT") }}';
+  const API_FILTER = '{{ env("API_REPORT_FILTER") }}';
   let currentPage = 1;
   let totalPages = 1;
   let currentFilters = {};
@@ -728,7 +728,7 @@
   <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
   <ul class="dropdown-menu dropdown-menu-end shadow-sm">
     <li>
-      <a class="dropdown-item d-flex align-items-center" href="#">
+      <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}">
         <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
       </a>
     </li>
@@ -830,7 +830,7 @@
       <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
       <ul class="dropdown-menu dropdown-menu-end shadow-sm">
         <li>
-          <a class="dropdown-item d-flex align-items-center" href="#">
+          <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}">
             <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
           </a>
         </li>
@@ -932,7 +932,7 @@
       <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
       <ul class="dropdown-menu dropdown-menu-end shadow-sm">
         <li>
-          <a class="dropdown-item d-flex align-items-center" href="#">
+          <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}">
             <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
           </a>
         </li>
@@ -1140,7 +1140,7 @@
           <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm">
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}">
                 <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
               </a>
             </li>
@@ -1241,7 +1241,7 @@
           <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm">
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}">
                 <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
               </a>
             </li>
@@ -1342,7 +1342,7 @@
           <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm">
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}">
                 <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
               </a>
             </li>
@@ -1443,7 +1443,7 @@
           <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm">
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}">
                 <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
               </a>
             </li>
@@ -1544,7 +1544,7 @@
           <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm">
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}">
                 <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
               </a>
             </li>
@@ -1645,7 +1645,7 @@
           <a href="javascript:void(0)" data-bs-toggle="dropdown" class="text-dark"><i class="fa fa-ellipsis-v fa-lg"></i></a>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm">
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}">
                 <i class="fa fa-eye me-2 text-primary"></i> Visão Geral
               </a>
             </li>

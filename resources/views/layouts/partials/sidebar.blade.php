@@ -43,7 +43,7 @@
                   <a class="nav-link menu-title" href="javascript:void(0)">
                     <i data-feather="file-text"></i><span>Denúncias</span></a>
                   <ul class="nav-submenu menu-content">
-                    <li><a href="#">Nova Denúncia</a></li>
+                    <li><a href="{{ route('add_report') }}">Nova Denúncia</a></li>
                     <li><a href="{{ route('casos') }}">Todas as Denúncias</a></li>
                     <li><a href="{{ route('audiodenuncia') }}">Audio Denuncia</a></li>
                     <li><a href="#">Estados das Denúncias</a></li>
@@ -51,7 +51,7 @@
                 </li>
 
                 <!-- Casos -->
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                   <a class="nav-link menu-title" href="javascript:void(0)">
                     <i data-feather="briefcase"></i><span>Casos</span></a>
                   <ul class="nav-submenu menu-content">
@@ -60,7 +60,7 @@
                     <li><a href="#">Atribuição a Gestores</a></li>
                     <li><a href="#">Acompanhamento</a></li>
                   </ul>
-                </li>
+                </li> -->
 
                 <!-- Crianças e Envolvidos -->
                 <li class="dropdown">

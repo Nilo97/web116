@@ -90,7 +90,7 @@
                 </div>
               </form>
               <div class="media-body text-end">
-                <div class="btn btn-primary" onclick="getFile()"><i data-feather="plus-square"></i>Adicionar Novo Caso</div>
+                <a class="btn btn-primary" href="{{ route('add_report') }}" ><i data-feather="plus-square"></i>Adicionar Novo Caso</a>
                 <div class="btn btn-outline-primary ms-2"><i data-feather="upload"></i>Importar Dados</div>
               </div>
             </div>

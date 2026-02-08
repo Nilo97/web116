@@ -318,7 +318,7 @@
           </li>
 
           <!-- Casos -->
-          <li class="dropdown">
+          <!-- <li class="dropdown">
             <a class="nav-link menu-title" href="javascript:void(0)">
               <i data-feather="briefcase"></i><span>Casos</span></a>
             <ul class="nav-submenu menu-content">
@@ -327,7 +327,7 @@
               <li><a href="#">Atribuição a Gestores</a></li>
               <li><a href="#">Acompanhamento</a></li>
             </ul>
-          </li>
+          </li> -->
 
           <!-- Crianças e Envolvidos -->
           <li class="dropdown">
@@ -1136,7 +1136,7 @@
        // Load all form options from API
        if (token) {
          $.ajax({
-             url: 'http://127.0.0.1:9800/api/form-options',
+             url:'{{ env("API_OPTIONS") }}',
              type: 'GET',
              headers: {
                  'Authorization': `Bearer ${token}`,
@@ -1673,7 +1673,7 @@
             }
           });
 
-          fetch(`http://127.0.0.1:9800/api/reports/${reportId}`, {
+          fetch('{{ env("API_REPORT") }}'+`/${reportId}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -1717,7 +1717,7 @@
 
 
         function populateReport() {
-          fetch(`http://127.0.0.1:9800/api/reports/${reportId}`, {
+          fetch('{{ env("API_REPORT") }}/'+`${reportId}`, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
